@@ -1,0 +1,19 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{# Individual artist item in a list - used on people index and home page #}
+<a class="list-group-item" href="{% pageurl artist %}">
+  <div class="media">
+    {% if artist.feed_image %}
+      <div class="media-left">
+        {% image artist.feed_image width-200 as img %}
+        <img class="media-object" src="{{ img.url }}" />
+      </div>
+    {% endif %}
+    <div class="media-body">
+      <h4 class="media-heading">{{ artist.name }} {{ artist.last_name }}</h4>
+      {% if artist.search_description %}
+        <p>{{ artist.search_description }}</p>
+      {% endif %}
+    </div>
+  </div>
+</a>
