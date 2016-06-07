@@ -1,29 +1,15 @@
 {% load home_tags event_tags artist_tags blog_tags helper_tags cache compress static wagtailuserbar %}
 
+{% load require %}
+
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <script type="text/javascript" src="{% static "jquery/dist/jquery.min.js" %}"></script>
- 
-    <!-- backbone -->
-    <script type="text/javascript" src="{% static "icanhaz/ICanHaz.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "json2/json2.js" %}"></script>
-    <script type="text/javascript" src="{% static "underscore/underscore-min.js" %}"></script>
-    <script type="text/javascript" src="{% static "backbone/backbone-min.js" %}"></script>
- 
-    <script type="text/javascript" src="{% static "js/PostVision.js" %}"></script>
-
-    {% block extra_head %}
-    {% endblock %}
-
+        {% require_module 'main' %}
     </head>
     <body>
-
-    {% block content %}
-    {% endblock %}
-        
+        <div id="container">
+            <div id="menu"></div>
+            <div id="content"></div>
+        </div>      
     </body>
 </html>

@@ -1,0 +1,25 @@
+require.config({
+  /*paths: {
+    jquery: '{% static "jquery/dist/jquery.min.js" %}',
+    icanhaz: '{% static "icanhaz/ICanHaz.min.js" %}',
+    json2: '{% static "json2/json2.js" %}',
+    underscore: '{% static "underscore/underscore-min.js" %}',
+    backbone: '{% static "backbone/backbone-min.js" %}',
+  }*/
+    paths: {
+        jquery: 'bower_components/jquery/dist/jquery.min',
+        underscore: 'bower_components/underscore/underscore-min',
+        backbone: 'bower_components/backbone/backbone-min',
+        hbs: 'bower_components/require-handlebars-plugin/hbs',
+        templates: '../templates',
+    },
+});
+
+require([
+
+  // Load our app module and pass it to our definition function
+  'app',
+], function(App){
+  // The "app" dependency is passed in as "App"
+  App.initialize();
+});

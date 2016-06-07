@@ -1,4 +1,4 @@
 *.pyc
-media/
-static/
-components/
+/media
+/static
+/postvision/static/js/bower_components

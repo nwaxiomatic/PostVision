@@ -82,6 +82,8 @@ MIDDLEWARE_CLASSES = [
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 ]
 
+APPEND_SLASH = True
+
 ROOT_URLCONF = 'postvision.urls'
 
 TEMPLATES = [
@@ -161,14 +163,13 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'postvision/static/js')
 BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
     'backbone',
     'json2',
-    'handlebars',
-    'icanhaz',
+    'require-handlebars-plugin',
 )
 
 # Wagtail settings

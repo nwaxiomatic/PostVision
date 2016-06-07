@@ -10,6 +10,8 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
 
+from django.views.generic.base import TemplateView
+
 import debug_toolbar
 
 urlpatterns = [
@@ -24,7 +26,10 @@ urlpatterns = [
 
     url(r'^search/$', search_views.search, name='search'),
 
-    url(r'', include(wagtail_urls)),
+    #url(r'', include(wagtail_urls)),
+
+    url(r'^(?P<path>.*)/$', TemplateView.as_view(template_name='home/base.html')),
+    url(r'^$', TemplateView.as_view(template_name='home/base.html'))
 ]
 
 from django.conf.urls.static import static
