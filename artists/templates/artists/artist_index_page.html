@@ -1,41 +1,19 @@
 {% extends "home/base.html" %}
 
-{% load wagtailcore_tags %}
+{% load jstemplate %}
 
+{% block extra_head %}
+{% endblock %}
+ 
 {% block content %}
-    {% include "helpers/includes/intro.html" with intro=self.intro only %}
 
-    {% if request.GET.tag|length %}
-        <h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>
-    {% endif %}
+{% icanhazjs "detailApp" %}
+{% icanhazjs "listApp" %}
+{% icanhazjs "artistTemplate" %}
 
-    <div class="list-group">
-        {# Uses serve method defined in models.py - allows for paging if required #}
-        {# See also standard index for creating a listing with a tag #}
-        {% for artist in artists %}
-            {% include "artists/includes/artist_list_item.html" %}
-        {% empty %}
-            No artists found
-        {% endfor %}
+
+    <h1 class="page-header">Artists</h1>
+    <div id="app">
     </div>
 
-    {# Pagination - uses django.core.paginator #}
-    {# Append any other url query string variables to the next and previous links - allows tag to be passed through #}
-    <div class="row">
-        <div class="col-sm-4 previous">
-            {% if artists.has_previous %}
-                <a href="?page={{ artists.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Previous</a>
-            {% endif %}
-        </div>
-        <div class="col-sm-4 pages">
-            Page {{ artists.number }} of {{ artists.paginator.num_pages }}
-        </div>
-        <div class="col-sm-4 next">
-            {% if artists.has_next %}
-                <a href="?page={{ artists.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next</a>
-            {% endif %}
-        </div>
-    </div>
-
-    {% include "links/includes/related_links.html" with related_links=self.related_links.all only %}
 {% endblock %}

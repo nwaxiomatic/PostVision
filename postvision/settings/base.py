@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'taggit',
     'compressor',
     'rest_framework',
+    'require',
     'djangobower',
+    'jstemplate',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -146,6 +148,8 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
+STATICFILES_STORAGE = 'require.storage.OptimizedStaticFilesStorage'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
@@ -157,13 +161,14 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static/components')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
 BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
     'backbone',
     'json2',
     'handlebars',
+    'icanhaz',
 )
 
 # Wagtail settings

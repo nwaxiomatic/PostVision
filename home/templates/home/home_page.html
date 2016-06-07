@@ -1,22 +1,19 @@
 {% extends "home/base.html" %}
-{% load wagtailcore_tags home_tags %}
 
+{% load jstemplate %}
 
-{% block heading %}
-    <div class="jumbotron">
-        <h1>PostVision</h1>
-    </div>
+{% block extra_head %}
 {% endblock %}
-
-
+ 
 {% block content %}
-    {% include "helpers/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
 
-    {% if self.body %}
-        <div class="body-content">
-            {% include "home/includes/streamfield.html" with content=self.body %}
-        </div>
-    {% endif %}
+{% icanhazjs "detailApp" %}
+{% icanhazjs "listApp" %}
+{% icanhazjs "artistTemplate" %}
 
-    {% artist_listing_homepage %}
+
+    <h1 class="page-header">Artists</h1>
+    <div id="app">
+    </div>
+
 {% endblock %}
