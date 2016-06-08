@@ -66,7 +66,7 @@ class ArtistProfilePage(Page):
     ]
 
     api_fields = ['first_name', 'last_name', 'intro', 'bio',
-        'profile_picture', 'feed_image']
+        'profile_picture', 'feed_image', 'slug']
 
     def __unicode__(self):
         return self.first_name + ' ' + self.last_name

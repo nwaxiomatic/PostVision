@@ -1,11 +1,11 @@
 define([
   'underscore',
   'backbone',
-  'models/artist'
-], function(_, Backbone, ArtistModel){
-  var ArtistsCollection = Backbone.Collection.extend({
+  'models/wagtailPage'
+], function(_, Backbone, WagtailPageModel){
+  var WagtailPageCollection = Backbone.Collection.extend({
     model: ArtistModel,
-    url: '/api/v1/pages/?type=artists.ArtistProfilePage&fields=title,first_name,last_name,slug',
+    url: '/api/v1/pages/?type=artists.ArtistProfilePage',
     urlRoot: '/api/v1/pages/',
 
     parse: function(response) {

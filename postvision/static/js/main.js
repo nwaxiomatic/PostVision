@@ -11,6 +11,7 @@ require.config({
         underscore: 'bower_components/underscore/underscore-min',
         backbone: 'bower_components/backbone/backbone-min',
         hbs: 'bower_components/require-handlebars-plugin/hbs',
+        imagesloaded: 'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
         templates: '../templates',
     },
 });

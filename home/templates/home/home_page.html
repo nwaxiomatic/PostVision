@@ -1,19 +1,1 @@
 {% extends "home/base.html" %}
-
-{% load jstemplate %}
-
-{% block extra_head %}
-{% endblock %}
- 
-{% block content %}
-
-{% icanhazjs "detailApp" %}
-{% icanhazjs "listApp" %}
-{% icanhazjs "artistTemplate" %}
-
-
-    <h1 class="page-header">Artists</h1>
-    <div id="app">
-    </div>
-
-{% endblock %}

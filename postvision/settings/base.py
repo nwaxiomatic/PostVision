@@ -170,6 +170,7 @@ BOWER_INSTALLED_APPS = (
     'backbone',
     'json2',
     'require-handlebars-plugin',
+    'imagesloaded',
 )
 
 # Wagtail settings

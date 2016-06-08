@@ -4,35 +4,44 @@ define([
     'underscore', 
     'backbone',
     'collections/artists',
-    'apps/artists/list',
-    'apps/artists/detail',
-], function($, hbs, _, Backbone, ArtistCollection, ArtistListApp, 
-        ArtistDetailApp){
+    'apps/wagtail/list',
+    'apps/wagtail/detail',
+], function($, hbs, _, Backbone, ArtistCollection, WagtailListApp, 
+        WagtailDetailApp){
     var AppRouter = Backbone.Router.extend({
         routes: {
-            'artists/': 'artistList',
-            ':id/': 'artistDetail',
-            '*path':  'artistList',
-
+            '(:appName/)(:slug/)': 'picker',
             '*actions': 'defaultAction',
         },
 
         artistList: function(){
-            app.artistListApp = new ArtistListApp({
-                el: $("#container"),
-                collection: app.artists,
+            this.list('artists');
+        },
+        picker: function(appName, slug){
+            if(!appName){
+                this.artistList();
+            }
+            else if(!slug){
+                this.list(appName);
+            }
+            else{
+                this.detail(appName, slug);
+            }
+        },
+        list: function(appName){
+            app.listApps[appName] = new WagtailListApp({
+                appName: appName, 
             });
-            app.artistListApp.bind(
+            app.listApps[appName].bind(
                 'navigate', this.navigate_to, this
             );
         },
-        artistDetail: function(id){
-            app.artistDetailApp = new ArtistDetailApp({
-                el: $("#container"),
-                collection: app.artists,
-                id: id,
+        detail: function(appName, slug){
+            app.detailApps[appName] = new WagtailDetailApp({
+                appName: appName,
+                slug: slug,
             });
-            app.artistDetailApp.bind(
+            app.detailApps[appName].bind(
                 'home', this.navigate_to, this
             );
         },
@@ -42,7 +51,7 @@ define([
         },
 
         navigate_to: function(model){
-            var path = (model && model.get('id') + '/') || '';
+            var path = (model && model.get('slug') + '/') || '';
             this.navigate(path, true);
         },
 
@@ -50,7 +59,10 @@ define([
 
     var initialize = function(){
         window.app = window.app || {};
-        app.artists = new ArtistCollection;
+        app.collections = {};
+        app.listViews = {};
+        app.listApps = {};
+        app.detailApps = {};
         app.router = new AppRouter;
         app.router.on();
         Backbone.history.start({
