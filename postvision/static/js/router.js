@@ -4,12 +4,14 @@ define([
     'underscore', 
     'backbone',
     'backbonesuper',
+    'videojs',
     'apps/wagtail/navbar',
     'apps/wagtail/list',
     'apps/wagtail/detail',
-], function($, hbs, _, Backbone, BackboneSuper, WagtailNavbarApp, WagtailListApp, 
+], function($, hbs, _, Backbone, BackboneSuper, VideoJS, WagtailNavbarApp, WagtailListApp, 
         WagtailDetailApp){
     var AppRouter = Backbone.Router.extend({
+        detailPages: ['contact', 'about'],
         routes: {
             '(:appName/)(:slug/)': 'picker',
             '*actions': 'defaultAction',
@@ -17,7 +19,7 @@ define([
         picker: function(appName, slug){
             this.navbar();
             if(!appName){
-                this.list('artists');
+                this.detail('pages', 'home');
             }
             else if(!slug){
                 this.list(appName);
@@ -31,9 +33,14 @@ define([
             app.listApps[appName] = new WagtailNavbarApp();
         },
         list: function(appName){
-            app.listApps[appName] = new WagtailListApp({
-                appName: appName, 
-            });
+            if(this.detailPages.indexOf(appName) < 0){
+                app.listApps[appName] = new WagtailListApp({
+                    appName: appName, 
+                });
+            }
+            else{
+                this.detail('standardpages', appName);
+            }
         },
         detail: function(appName, slug){
             app.detailApps[appName] = new WagtailDetailApp({

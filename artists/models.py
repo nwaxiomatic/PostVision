@@ -58,8 +58,8 @@ class ArtistProfilePage(Page):
         FieldPanel('bio', classname="full"),
         ImageChooserPanel('profile_picture'),
         ImageChooserPanel('feed_image'),
-        #MultiFieldPanel(ContactFields.panels, "Contact"),
-        InlinePanel('artistsocialmediacontact', label="Social Media Links"),
+        InlinePanel('artistartworklink', label="Artworks"),
+        InlinePanel('sitesocialmediacontact', label="Social Media Links"),
     ]
 
     subpage_types = []
@@ -70,7 +70,7 @@ class ArtistProfilePage(Page):
 
     api_fields = ['first_name', 'last_name', 'intro', 'bio',
         'profile_picture', 'feed_image', 'slug', 'url', 
-        'artistartworklink', 'artistsocialmediacontact']
+        'artistartworklink', 'sitesocialmediacontact']
 
     def __unicode__(self):
         return self.first_name + ' ' + self.last_name
@@ -115,7 +115,3 @@ class ArtistIndexPage(Page):
         context = super(ArtistIndexPage, self).get_context(request)
         context['artists'] = artists
         return context
-
-@register_snippet
-class ArtistSocialMediaContact(SocialMediaContact):
-    artist = ParentalKey(ArtistProfilePage, related_name='artistsocialmediacontact')

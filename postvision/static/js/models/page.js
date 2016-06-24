@@ -2,8 +2,9 @@ define([
   'backbone'
 ], function(Backbone){
   var WagtailPageModel = Backbone.Model.extend({
-    idAttribute: 'slug',
-    fields: ['slug', 'title'],
+    idAttribute: 'page_slug',
+    fields: ['slug', 'title', 'body'],
+    modelName: 'home.HomePage',
 
     urlRoot: function(){
         return '/api/v2beta/pages/?fields=' + this.fields.join(',') + '&type=' + this.modelName + '&slug=';
@@ -46,12 +47,11 @@ define([
                     var appName = self.manytomanyfields[i][1];
                     var j = i;
                     require(['collections/'+appName], function ( collection ) {
-                        if (!app.collections[appName]){
-                            app.collections[appName] = new collection;
+                        if (!self.collections[appName]){
+                            self.collections[appName] = new collection;
                         }
-                        m2mCollection = app.collections[appName];
+                        m2mCollection = self.collections[appName];
                         m2mCollection.ids = ids;
-                        console.log(cached_function);
                         m2mCollection.maybeFetch({
                             success: function(){
                                 self.attributes[self.manytomanyfields[j][0]] = _.map(m2mCollection.models, function(value){
@@ -62,17 +62,8 @@ define([
                         });
                         m2mCollection.ids = [];
                     });
-                /*for(var j = 0; j < m2m.length; j++){
-                    
-                    
-                  var url_dir = m2m[j][self.manytomanyfields[i][2]].id;
-                  var slugs = url_dir[url_dir.length-2];
-                  console.log(slug);
-                  
-                }*/
                 }
             }
-            else{
                 var result = cached_function.apply(this, arguments);
                 return result;
             }

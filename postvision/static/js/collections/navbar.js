@@ -9,10 +9,11 @@ define([
         parentID: 3,
         appName: 'navbar',
         modelName: 'nav',
+        ignore: ['Artworks'],
         initialize: function(){
             var self = this;
             var homepage = new WagtailPageModel({
-                slug:'home',
+                'page_slug':'home',
             });
             homepage['modelName'] = 'home.HomePage';
             homepage.fetch({
@@ -20,15 +21,20 @@ define([
                     self.parentID = homepage.get('id');
                     self.maybeFetch({
                         success: function(){
+                            homepage.attributes.meta.slug = '';
                             self.add([homepage]);
-                            console.log(self.models);
                         }
                     });
                 }
             });
         },
         parse: function(response) {
-            return response.items;
+            var self = this;
+            response = response.items;
+            response = _.filter(response,function(obj) {
+                 return self.ignore.indexOf(obj.title) < 0;
+            });
+            return response;
         },
     });
   // You don't usually return a collection instantiated

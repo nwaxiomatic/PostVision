@@ -13,7 +13,8 @@ require.config({
         hbs: 'bower_components/require-handlebars-plugin/hbs',
         imagesloaded: 'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
         templates: '../templates',
-        backbonesuper: 'bower_components/backbone-super/backbone-super/backbone-super-min'
+        backbonesuper: 'bower_components/backbone-super/backbone-super/backbone-super-min',
+        videojs: 'bower_components/video.js/dist/video.require'
     },
 });
 

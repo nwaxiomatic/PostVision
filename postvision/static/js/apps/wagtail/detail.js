@@ -18,8 +18,7 @@ define([
                     self.collection.getOrFetch(options.slug, {
                         success: function(model){
                             self.model = model;
-                            self.render();
-                            console.log(self);                   
+                            self.render();                
                     }});
             });
         },
@@ -31,7 +30,16 @@ define([
                     $(self.el).html(template(self.model.toJSON()));
             });
             return this;
-        }       
+        },
+        renderSublist: function(appName){
+            var self = this;
+            require(['hbs!templates/'+appName+'/list'], 
+                function ( template ) {
+                    console.log(self.model.toJSON());
+                    $(self.el).children(element).html(template(self.model.toJSON()));
+            });
+            return this;
+        },    
     });
     // Our module now returns our view
     return WagtailDetailApp;

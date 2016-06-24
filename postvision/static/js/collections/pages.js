@@ -4,6 +4,10 @@ define([
   var WagtailPageCollection = WagtailCollection.extend({
     urlRoot: '/api/v1/pages/',
     ids: [],
+    appName: 'home',
+    modelName: 'page',
+    pageType: 'HomePage',
+    fields: ['slug', 'title'],
 
     url: function(){
     	var urlBase = this.urlRoot + '?type=' + this.appName + '.' + this.pageType + '&fields=' + this.fields.join(',');

@@ -19,8 +19,8 @@ from wagtail.wagtailadmin.edit_handlers import (
 )
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 
-from contact.models import ContactFields
 
 class ArtworkPage(Page):
     description = RichTextField(blank=True, null=True)
@@ -32,15 +32,23 @@ class ArtworkPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+    video = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('description'),
         FieldPanel('date'),
         ImageChooserPanel('image'),
+        DocumentChooserPanel('video'),
         InlinePanel('artworkartistlink', label="Artist Attributes"),
     ]
 
-    api_fields = ['slug', 'title', 'description', 'date', 'image']
+    api_fields = ['slug', 'title', 'description', 'date', 'image', 'video']
 
     subpage_types = []
 

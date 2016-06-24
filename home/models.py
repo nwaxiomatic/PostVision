@@ -65,7 +65,7 @@ class HomePageRelatedLink(Orderable, RelatedLink):
 
 
 class HomePage(Page):
-    body = StreamField(StreamBlock())
+    body = RichTextField(blank=True)
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
@@ -76,14 +76,18 @@ class HomePage(Page):
         'artists.ArtistIndexPage',
         'events.EventIndexPage',
         'artworks.ArtworkIndexPage',
+        'home.StandardPage',
+        'contact.ContactPage'
     ]
+
+    api_fields = ['title', 'slug', 'body']
 
     class Meta:
         verbose_name = "Homepage"
 
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
-    StreamFieldPanel('body'),
+    FieldPanel('body', classname="full"),
     #InlinePanel('carousel_items', label="Carousel items"),
     #InlinePanel('related_links', label="Related links"),
 ]
@@ -148,11 +152,14 @@ class StandardPage(Page):
         index.SearchField('body'),
     ]
 
+    api_fields = ['title', 'intro', 'body']
+
 StandardPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
     #InlinePanel('carousel_items', label="Carousel items"),
     FieldPanel('body', classname="full"),
+    InlinePanel('sitesocialmediacontact', label="Social Media Links"),
     #InlinePanel('related_links', label="Related links"),
 ]
 

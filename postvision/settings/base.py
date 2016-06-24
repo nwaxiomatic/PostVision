@@ -174,6 +174,7 @@ BOWER_INSTALLED_APPS = (
     'require-handlebars-plugin',
     'imagesloaded',
     'backbone-super',
+    'video.js',
 )
 
 # Wagtail settings
