@@ -11,7 +11,7 @@ SECRET_KEY = 'h1fcxe2@xg$j6#o-0z_af2&atzaks+n#q@+#s=&76r74)4hov#'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
+"""DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 INTERNAL_IPS = (
     '127.0.0.1',
@@ -21,7 +21,7 @@ MIDDLEWARE_CLASSES += (
 )
 
 INSTALLED_APPS += (
-    'debug_toolbar',
+    #'debug_toolbar',
 )
 
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
@@ -50,6 +50,7 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
     'SHOW_TOOLBAR_CALLBACK' : show_toolbar,
 }
+"""
 
 try:
     from .local import *

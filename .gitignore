@@ -2,3 +2,5 @@
 /media
 /static
 /postvision/static/js/bower_components
+/wagtail
+!/wagtail/api

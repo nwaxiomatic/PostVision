@@ -1,12 +1,12 @@
 define([
   'underscore',
   'backbone',
-  'models/wagtailPage'
+  'models/page'
 ], function(_, Backbone, WagtailPageModel){
   var WagtailPageCollection = Backbone.Collection.extend({
-    model: ArtistModel,
-    url: '/api/v1/pages/?type=artists.ArtistProfilePage',
-    urlRoot: '/api/v1/pages/',
+    appName: '',
+    modelName: '',
+    pageType: '',
 
     parse: function(response) {
         return response.pages;
@@ -36,18 +36,23 @@ define([
         // Helper function to use this collection as a cache for models on the server
         var model = this.get(slug);
 
-        if(model){
+        if(model && model.get('fully_loaded')){
             options.success && options.success(model);
             return;
         }
+        var self = this;
 
-        model = new ArtistModel({
-            artist_slug: slug
+        require(['models/'+this.modelName], 
+            function ( modelType ) {
+                var slugAttr = self.modelName+'_slug'
+                var modelInit = {collection: self};
+                modelInit[slugAttr] = slug;
+                model = new modelType(modelInit);
+                model.fetch(options);
+                model['fully_loaded'] = true;
         });
-
-        model.fetch(options);
     }
   });
   // You don't usually return a collection instantiated
-  return ArtistsCollection;
+  return WagtailPageCollection;
 });

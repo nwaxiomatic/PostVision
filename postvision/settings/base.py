@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
     'wagtail.contrib.modeladmin',
+    'wagtail.api.v2',
 
     'wagtail.contrib.wagtailapi',
     'django_extensions',
@@ -63,12 +64,13 @@ INSTALLED_APPS = [
     'helpers',
     'contact',
     'artists',
+    'artworks',
     'blog',
     'events',
 ]
 
 MIDDLEWARE_CLASSES = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -95,7 +97,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
+                #'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -171,6 +173,7 @@ BOWER_INSTALLED_APPS = (
     'json2',
     'require-handlebars-plugin',
     'imagesloaded',
+    'backbone-super',
 )
 
 # Wagtail settings

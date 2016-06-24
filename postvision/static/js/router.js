@@ -3,23 +3,21 @@ define([
     'hbs',
     'underscore', 
     'backbone',
-    'collections/artists',
+    'backbonesuper',
+    'apps/wagtail/navbar',
     'apps/wagtail/list',
     'apps/wagtail/detail',
-], function($, hbs, _, Backbone, ArtistCollection, WagtailListApp, 
+], function($, hbs, _, Backbone, BackboneSuper, WagtailNavbarApp, WagtailListApp, 
         WagtailDetailApp){
     var AppRouter = Backbone.Router.extend({
         routes: {
             '(:appName/)(:slug/)': 'picker',
             '*actions': 'defaultAction',
         },
-
-        artistList: function(){
-            this.list('artists');
-        },
         picker: function(appName, slug){
+            this.navbar();
             if(!appName){
-                this.artistList();
+                this.list('artists');
             }
             else if(!slug){
                 this.list(appName);
@@ -28,33 +26,25 @@ define([
                 this.detail(appName, slug);
             }
         },
+        navbar: function(){
+            var appName = 'navbar';
+            app.listApps[appName] = new WagtailNavbarApp();
+        },
         list: function(appName){
             app.listApps[appName] = new WagtailListApp({
                 appName: appName, 
             });
-            app.listApps[appName].bind(
-                'navigate', this.navigate_to, this
-            );
         },
         detail: function(appName, slug){
             app.detailApps[appName] = new WagtailDetailApp({
                 appName: appName,
                 slug: slug,
             });
-            app.detailApps[appName].bind(
-                'home', this.navigate_to, this
-            );
         },
         defaultAction: function(actions){
             // We have no matching route, lets just log what the URL was
             console.log('No route:', actions);
         },
-
-        navigate_to: function(model){
-            var path = (model && model.get('slug') + '/') || '';
-            this.navigate(path, true);
-        },
-
     });
 
     var initialize = function(){

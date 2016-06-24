@@ -1,10 +1,10 @@
 define([
     'views/wagtail/page'
 ], function(WagtailPageView){
-    var ArtistView = WagtailPageView.extend({
+    var ArtworkView = WagtailPageView.extend({
         tagName: 'li',
-        className: 'artist',
+        className: 'artwork',
     });
     // Our module now returns our view
-    return ArtistView;
+    return ArtworkView;
 });

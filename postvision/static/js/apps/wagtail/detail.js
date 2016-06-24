@@ -3,10 +3,6 @@ define([
     'backbone',
 ], function($, Backbone){
     var WagtailDetailApp = Backbone.View.extend({
-        events: {
-            'click .home': 'home'
-        },
-
         el: $("#app"),
 
         initialize: function(options){
@@ -22,19 +18,16 @@ define([
                     self.collection.getOrFetch(options.slug, {
                         success: function(model){
                             self.model = model;
-                            self.render();                   
+                            self.render();
+                            console.log(self);                   
                     }});
             });
         },
-        
-        home: function(e){
-            this.trigger('home');
-        },
-
         render: function(){
             var self = this;
             require(['hbs!templates/'+self.appName+'/detail'], 
                 function ( template ) {
+                    console.log(self.model.toJSON());
                     $(self.el).html(template(self.model.toJSON()));
             });
             return this;

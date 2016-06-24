@@ -1,9 +1,13 @@
 define([
-  'models/wagtailPage'
+  'models/page'
 ], function(WagtailPage){
   var ArtistModel = WagtailPage.extend({
-    urlRoot: '/api/v1/pages/?type=artists.ArtistProfilePage&fields=title,first_name,last_name,slug&slug=',
+    modelName: 'artists.ArtistProfilePage',
+    fields: ['slug', 'title', 'profile_picture', 'bio', 
+    	'profile_picture', 'first_name', 'last_name',
+    	'artistartworklink'],
     idAttribute: 'artist_slug',
+    manytomanyfields: [['artistartworklink', 'artworks', 'artwork'],],
   });
   // Return the model for the module
   return ArtistModel;

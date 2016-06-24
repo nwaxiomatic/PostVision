@@ -1,17 +1,20 @@
 define([
     'jquery',
+    'underscore',
     'backbone',
-], function($, Backbone){
+], function($, _, Backbone){
     var WagtailListApp = Backbone.View.extend({
         el: $("#app"),
 
         initialize: function(options){
-            this.appName = options.appName;
+            if(!this.appName){
+                this.appName = options.appName;
+            }
             var appName = this.appName;
             var self = this;
             require([
                     'collections/'+appName,
-                    'views/'+appName+'/list',
+                    'views/wagtail/list',
                     'hbs!templates/'+appName+'/list'], 
                 function ( Collection, ListView, ListTemplate ) {
                     if (!app.collections[appName]){

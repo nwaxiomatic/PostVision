@@ -47,6 +47,8 @@ class ArtistProfilePage(Page):
         index.SearchField('last_name'),
         index.SearchField('intro'),
         index.SearchField('biography'),
+        index.SearchField('socialmediacontact'),
+        index.SearchField('artistartworklink'),
     ]
 
     content_panels = Page.content_panels + [
@@ -57,16 +59,18 @@ class ArtistProfilePage(Page):
         ImageChooserPanel('profile_picture'),
         ImageChooserPanel('feed_image'),
         #MultiFieldPanel(ContactFields.panels, "Contact"),
-        InlinePanel('socialmediacontact', label="Social Media Links"),
-        InlinePanel('socialmediacontact', label="Related Links"),
+        InlinePanel('artistsocialmediacontact', label="Social Media Links"),
     ]
+
+    subpage_types = []
 
     promote_panels = Page.promote_panels + [
         ImageChooserPanel('feed_image'),
     ]
 
     api_fields = ['first_name', 'last_name', 'intro', 'bio',
-        'profile_picture', 'feed_image', 'slug']
+        'profile_picture', 'feed_image', 'slug', 'url', 
+        'artistartworklink', 'artistsocialmediacontact']
 
     def __unicode__(self):
         return self.first_name + ' ' + self.last_name
@@ -76,7 +80,6 @@ class ArtistIndexPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full"),
-        InlinePanel('artistprofilelink', label="Related links"),
     ]
 
     subpage_types = [ArtistProfilePage]
@@ -113,25 +116,6 @@ class ArtistIndexPage(Page):
         context['artists'] = artists
         return context
 
+@register_snippet
 class ArtistSocialMediaContact(SocialMediaContact):
-    artist = ParentalKey(ArtistProfilePage, related_name='socialmediacontact')
-
-@register_snippet
-class ArtistProfileLink(PageLink):
-    page = ParentalKey(ArtistIndexPage, related_name='artistprofilelink')
-
-class ArtworkPage(Page):
-    description = RichTextField(blank=True, null=True)
-    date = models.DateField("Post date")
-    feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-@register_snippet
-class ArtworkAttributionLink(PageLink):
-    artist = ParentalKey(ArtistProfilePage, related_name='artistartworklink')
-    
+    artist = ParentalKey(ArtistProfilePage, related_name='artistsocialmediacontact')

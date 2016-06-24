@@ -9,14 +9,16 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
+from wagtail.api.v2 import urls as wagtailapi_urls2
 
 from django.views.generic.base import TemplateView
 
-import debug_toolbar
+#import debug_toolbar
 
 urlpatterns = [
-    url(r'^__debug__/', include(debug_toolbar.urls)),
+    #url(r'^__debug__/', include(debug_toolbar.urls)),
 
+    url(r'^api/', include(wagtailapi_urls2)),
     url(r'^api/', include(wagtailapi_urls)),
 
     url(r'^django-admin/', include(admin.site.urls)),

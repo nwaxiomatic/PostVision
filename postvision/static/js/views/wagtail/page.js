@@ -6,26 +6,25 @@ define([
 ], function($, hbs, _, Backbone){
     var WagtailPageView = Backbone.View.extend({
         tagName: 'li',
-        className: 'artist',
 
         events: {
             'click .permalink': 'navigate'           
         },
 
         initialize: function(){
-            require([], function(){
-
+            var self = this;
+            var appName = this.model.collection.appName;
+            var modelName = this.model.collection.modelName;
+            require(['hbs!templates/'+appName+'/'+modelName],
+                function (PageTemplate) {
+                    self.template = PageTemplate
+                    self.render();
             });
             this.model.bind('change', this.render, this);
         },
 
-        navigate: function(e){
-            this.trigger('navigate', this.model);
-        },
-
         render: function(){
-            $(this.el).html(ArtistTemplate(this.model.toJSON()));
-            return this;
+            $(this.el).html(this.template(this.model.toJSON()));
         }
     });
     // Our module now returns our view

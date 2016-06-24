@@ -19,13 +19,19 @@ define([
             this.collection.each(this.addOne);
         },
 
-        addOne: function(artist){
-            var view = new ArtistView({
-                model: artist
+        addOne: function(model){
+            var self = this;
+            var appName = self.collection.appName;
+            var modelName = self.collection.modelName;
+            require(['views/'+appName+'/'+modelName], 
+                function ( ModelView ) {
+                    var view = new ModelView({
+                        model: model
+                    });
+                    self.$el.prepend(view.el);
+                    self.views.push(view);
+                    view.bind('all', self.rethrow, self);
             });
-            this.$el.prepend(view.render().el);
-            this.views.push(view);
-            view.bind('all', this.rethrow, this);
         },
 
         rethrow: function(){

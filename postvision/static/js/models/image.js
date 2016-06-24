@@ -1,7 +1,9 @@
 define([
   'backbone'
 ], function(Backbone){
-  var WagtailPageModel = Backbone.Model.extend({
+  var WagtailImageModel = Backbone.Model.extend({
+    urlRoot: '/api/v2beta/images/',
+    idAttribute: 'id',
     url: function() {
 		var base =
 			_.result(this, 'urlRoot') ||
@@ -11,14 +13,7 @@ define([
 		return base + encodeURIComponent(id);
     },
 
-    parse: function(response, options) {
-    	if(response.pages)
-        	return response.pages[0];
-        else
-        	return response;
-    },
-
   });
   // Return the model for the module
-  return WagtailPageModel;
+  return WagtailImageModel;
 });
