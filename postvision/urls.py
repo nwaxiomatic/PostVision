@@ -9,12 +9,16 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
+from wagtail.api.v2 import urls as wagtailapi_urls2
 
-import debug_toolbar
+from django.views.generic.base import TemplateView
+
+#import debug_toolbar
 
 urlpatterns = [
-    url(r'^__debug__/', include(debug_toolbar.urls)),
+    #url(r'^__debug__/', include(debug_toolbar.urls)),
 
+    url(r'^api/', include(wagtailapi_urls2)),
     url(r'^api/', include(wagtailapi_urls)),
 
     url(r'^django-admin/', include(admin.site.urls)),
@@ -25,6 +29,9 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
 
     url(r'', include(wagtail_urls)),
+
+    url(r'^(?P<path>.*)/$', TemplateView.as_view(template_name='home/base.html')),
+    url(r'^$', TemplateView.as_view(template_name='home/base.html'))
 ]
 
 from django.conf.urls.static import static

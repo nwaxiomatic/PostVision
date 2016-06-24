@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
     'wagtail.contrib.modeladmin',
+    'wagtail.api.v2',
 
     'wagtail.contrib.wagtailapi',
     'django_extensions',
@@ -46,7 +47,9 @@ INSTALLED_APPS = [
     'taggit',
     'compressor',
     'rest_framework',
+    'require',
     'djangobower',
+    'jstemplate',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,12 +64,13 @@ INSTALLED_APPS = [
     'helpers',
     'contact',
     'artists',
+    'artworks',
     'blog',
     'events',
 ]
 
 MIDDLEWARE_CLASSES = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,6 +84,8 @@ MIDDLEWARE_CLASSES = [
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 ]
 
+APPEND_SLASH = True
+
 ROOT_URLCONF = 'postvision.urls'
 
 TEMPLATES = [
@@ -91,7 +97,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
+                #'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -146,6 +152,8 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
+STATICFILES_STORAGE = 'require.storage.OptimizedStaticFilesStorage'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
@@ -157,13 +165,15 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'static/components')
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'postvision/static/js')
 BOWER_INSTALLED_APPS = (
     'jquery',
     'underscore',
     'backbone',
     'json2',
-    'handlebars',
+    'require-handlebars-plugin',
+    'imagesloaded',
+    'backbone-super',
 )
 
 # Wagtail settings

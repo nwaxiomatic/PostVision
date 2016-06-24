@@ -74,7 +74,8 @@ class HomePage(Page):
         'home.StandardIndexPage', 
         'blog.BlogIndexPage',
         'artists.ArtistIndexPage',
-        'events.EventIndexPage'
+        'events.EventIndexPage',
+        'artworks.ArtworkIndexPage',
     ]
 
     class Meta:

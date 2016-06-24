@@ -39,5 +39,11 @@ class SocialMediaContact(RelatedLink):
         FieldPanel('handle'),
     ]
 
+    api_fields = ['link_external',]
+
+    def save(self, *args, **kwargs):
+        self.link_external = self.link_type.base_url + self.handle
+        super(SocialMediaContact, self).save(*args, **kwargs)
+
     class Meta:
         abstract = True

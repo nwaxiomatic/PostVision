@@ -72,9 +72,11 @@ class RelatedLinkType(models.Model):
         blank=True,
     )
 
-    base_url = models.CharField(
+    base_url = models.URLField(
         max_length=127,
     )
+
+    api_fields = ['name']
 
     def __unicode__(self):
         return self.name
@@ -94,4 +96,4 @@ class RelatedLink(LinkFields):
         abstract = True
 
     def __unicode__(self):
-        return self.url
+        return self.link_external
