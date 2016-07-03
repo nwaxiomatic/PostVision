@@ -175,7 +175,10 @@ BOWER_INSTALLED_APPS = (
     'imagesloaded',
     'backbone-super',
     'video.js',
+    'vide',
 )
+
+WAGTAILAPI_BASE_URL = 'http://107.170.47.203/'
 
 # Wagtail settings
 

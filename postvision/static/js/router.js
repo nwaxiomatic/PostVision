@@ -5,10 +5,11 @@ define([
     'backbone',
     'backbonesuper',
     'videojs',
+    'vide',
     'apps/wagtail/navbar',
     'apps/wagtail/list',
-    'apps/wagtail/detail',
-], function($, hbs, _, Backbone, BackboneSuper, VideoJS, WagtailNavbarApp, WagtailListApp, 
+    'apps/wagtail/detailM2M',
+], function($, hbs, _, Backbone, BackboneSuper, videojs, vide, WagtailNavbarApp, WagtailListApp, 
         WagtailDetailApp){
     var AppRouter = Backbone.Router.extend({
         detailPages: ['contact', 'about'],
@@ -30,7 +31,9 @@ define([
         },
         navbar: function(){
             var appName = 'navbar';
-            app.listApps[appName] = new WagtailNavbarApp();
+            if(!app.listApps[appName]){
+                app.listApps[appName] = new WagtailNavbarApp({});
+            }
         },
         list: function(appName){
             if(this.detailPages.indexOf(appName) < 0){

@@ -6,9 +6,13 @@ define([
     'views/artists/artist'
 ], function($, hbs, _, Backbone, ArtistView){
     var WagtailPageListView = Backbone.View.extend({
-
-        initialize: function(){
+        M2M: false,
+        initialize: function(options){
+            if (options.M2M) {
+                this.M2M = options.M2M;
+            }
             _.bindAll(this, 'addOne', 'addAll');
+            _.bindAll.apply(_, [this].concat(_.functions(this)));
             this.collection.bind('add', this.addOne);
             this.collection.bind('reset', this.addAll, this);
             this.views = []; 
@@ -26,7 +30,8 @@ define([
             require(['views/'+appName+'/'+modelName], 
                 function ( ModelView ) {
                     var view = new ModelView({
-                        model: model
+                        model: model,
+                        M2M: self.M2M,
                     });
                     self.$el.prepend(view.el);
                     self.views.push(view);

@@ -66,6 +66,27 @@ class HomePageRelatedLink(Orderable, RelatedLink):
 
 class HomePage(Page):
     body = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    background_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    background_video = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
@@ -80,7 +101,8 @@ class HomePage(Page):
         'contact.ContactPage'
     ]
 
-    api_fields = ['title', 'slug', 'body']
+    api_fields = ['title', 'slug', 'body', 'feed_image', 
+        'background_image', 'background_video']
 
     class Meta:
         verbose_name = "Homepage"
@@ -88,6 +110,9 @@ class HomePage(Page):
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('body', classname="full"),
+    ImageChooserPanel('feed_image'),
+    ImageChooserPanel('background_image'),
+    DocumentChooserPanel('background_video'),
     #InlinePanel('carousel_items', label="Carousel items"),
     #InlinePanel('related_links', label="Related links"),
 ]

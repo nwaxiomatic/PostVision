@@ -1,8 +1,8 @@
 define([
     'underscore',
     'collections/children',
-    'models/page'
-], function(_, ChildPageCollection, WagtailPageModel){
+    'models/nav'
+], function(_, ChildPageCollection, NavbarPageModel){
     var NavbarCollection = ChildPageCollection.extend({
         urlRoot: '/api/v2beta/pages/',
         fields: ['slug', 'title'],
@@ -12,7 +12,7 @@ define([
         ignore: ['Artworks'],
         initialize: function(){
             var self = this;
-            var homepage = new WagtailPageModel({
+            var homepage = new NavbarPageModel({
                 'page_slug':'home',
             });
             homepage['modelName'] = 'home.HomePage';

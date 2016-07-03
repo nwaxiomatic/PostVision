@@ -7,14 +7,15 @@ require.config({
     backbone: '{% static "backbone/backbone-min.js" %}',
   }*/
     paths: {
-        jquery: 'bower_components/jquery/dist/jquery.min',
+        jquery: 'bower_components/jquery/dist/jquery',
         underscore: 'bower_components/underscore/underscore-min',
         backbone: 'bower_components/backbone/backbone-min',
         hbs: 'bower_components/require-handlebars-plugin/hbs',
         imagesloaded: 'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
         templates: '../templates',
         backbonesuper: 'bower_components/backbone-super/backbone-super/backbone-super-min',
-        videojs: 'bower_components/video.js/dist/video.require'
+        videojs: 'bower_components/video.js/dist/video.require',
+        vide: 'bower_components/vide/dist/jquery.vide.require',
     },
 });
 

@@ -57,12 +57,11 @@ class SocialMediaContact(RelatedLink):
         FieldPanel('handle'),
     ]
 
-    api_fields = ['link_external', 'type']
+    api_fields = ['link_external', 'l_type']
 
     @property
-    def type(self):
-        return self.link_type.name
-    
+    def l_type(self):
+        return str(self.link_type).lower()
 
     def save(self, *args, **kwargs):
         self.link_external = self.link_type.base_url + self.handle

@@ -12,7 +12,7 @@ define([
     url: function(){
     	var urlBase = this.urlRoot + '?type=' + this.appName + '.' + this.pageType + '&fields=' + this.fields.join(',');
     	if (this.ids.length > 0){
-    		urlBase += '&id=' + this.ids.join(',');
+    		urlBase += '&id=' + this.ids.join('*');
     	}
         return urlBase;
     },

@@ -1,3 +1,29 @@
-	<h2>{{first_name}} {{last_name}}</h2>
-<img src="{{profile_picture.meta.file}}">
-{{artistartworklink.[0].title}}
+<div id="detail-block">
+<div id="artist-cover" class="col-xs-12" >
+    <div id="artist-first-name" class="artist-name">
+        {{uppercase first_name}}
+    </div>
+    <div id="artist-last-name" class="artist-name">
+        {{uppercase last_name}}
+    </div>
+    <div class="img-circle" id="artist-profile-image" >
+        <img src="{{profile_picture.meta.file}}">
+    </div>
+</div>
+<div id="artist-bio" class="col-xs-12">
+    {{{bio}}}
+</div>
+<div id="artist-social" class="col-xs-12" >
+    <ul class="artist-social">
+        {{#each sitesocialmediacontact}}
+            <li class="artist-social">
+                <a href="{{this.link_external}}">
+                <i class="fa fa-{{this.l_type}}" aria-hidden="true"></i>
+                </a>
+            </li>
+        {{/each}}
+    </ul>
+</div>
+    </div>
+<input class="arrow-down-check center" id="M2Marrow-check" type="checkbox">
+        <label for="M2Marrow-check" id="M2Marrow" class="arrow-down center"></label>

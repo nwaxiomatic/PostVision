@@ -1,0 +1,319 @@
+a, a:visited{
+    text-decoration: none;
+    color: black;
+}
+.center {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.no-height {
+    height: 0px;
+    overflow: hidden;
+}
+
+.hidden {
+    transition: all .25s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.shown {
+    transition: all .25s;
+    visibility: visible;
+    opacity: 1;
+}
+
+.col-xs-12 {
+    width: 100%;
+}
+
+.right-align {
+    float: right;
+    position: relative;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
+
+.navbar-image{
+    height: 150px;
+    border-radius: 200px;
+    box-sizing: border-box;
+    background-color: white;
+    border: 5px solid white;
+}
+
+#artist-cover {
+   position: relative;
+   height: 400px; 
+}
+
+.artist-name {
+    text-align: right;
+    font-size: 75px;
+    z-index: 2;
+}
+
+#artist-first-name {
+    position: absolute;
+    top : 15px;
+    right : 0px;
+}
+#artist-last-name {
+    position: absolute;
+    top : 80px;
+    right : 0px;
+}
+
+#artist-profile-image {
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    top : 0px;
+    right : 70px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#artist-profile-image img {
+    max-width: 400px;
+}
+
+#artist-bio {
+    position: relative;
+    padding-left: 40%;
+    text-align: justify;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: Helvetica;
+}
+
+#artist-social ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#artist-social li {
+    float: right;
+    padding-left: 10px;
+}
+
+.arrow-down-check {
+  display: none;
+}
+
+.arrow-down, .arrow-down:before, .arrow-down:after {
+    transition: all .25s;
+    position: absolute;
+    right: 0;
+    content: "";
+    height: 4px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.arrow-down{
+    height: 30px;
+    width: 60px;
+}
+
+.arrow-down:before {
+    left: 45%;
+    top: 10px;
+    transform: rotate(-30deg);
+    background-color: black;
+}
+.arrow-down:after {
+    right: 45%;
+    top: 10px;
+    transform: rotate(30deg);
+    background-color: black;
+}
+
+.arrow-down-check:checked ~ .arrow-down:before {
+    transform: rotate(30deg);
+}
+
+.arrow-down-check:checked ~ .arrow-down:after {
+    transform: rotate(-30deg);
+}
+
+html, body {
+    height: 100%;
+    margin:0px;
+    font-family: 'Knockout-48Featherweight' !important;
+    font-size: 36px;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+#menu {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    z-index: 100;
+}
+#app {
+    width: 100%;
+    padding: 50px;
+    padding-top: 0px;
+    box-sizing: border-box;
+}
+
+#appDetail{
+    width: 100%;
+    height: 100%;
+}
+
+#appBG-box{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    box-sizing: border-box;
+    z-index: -1;
+}
+
+#appBG{
+    height: 100%;
+    width: 100%;
+}
+
+#menu-bar{
+    height: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    z-index: 100;
+    line-height: 100px;
+    box-sizing: border-box;
+}
+
+#burger-menu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    text-align: right;
+    max-height: 100px;
+    padding-left: 30px;
+    padding-right: 30px;
+    line-height: 100px;
+    box-sizing: border-box;
+}
+
+.b-a, .bar, .bar:before, .bar:after {
+  transition: all .25s;
+  content: "";
+  position: absolute;
+  right: 0;
+  height: 6px;
+  width: 30px;
+  background-color: black;
+}
+
+.menu-collapsed {
+  transition: all .25s;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+.menu-collapsed ul {
+  transition: all 0s;
+  position: fixed;
+  left: -9000px;
+  padding: 0;
+}
+
+.bar {
+  position: absolute;
+  right: 30px;
+  top: 46px;
+  z-index: 10;
+}
+
+.menu-text {
+  float: right;
+  padding-right: 50px;
+}
+.menu-title {
+    float: left;
+}
+.bar:before {
+  top: -8px;
+}
+.bar:after {
+  top: 8px;
+}
+
+.b-a-expanded, .menu-expanded .bar:before, .menu-expanded .bar:after {
+  transition: all .25s;
+  top: -0px;
+}
+
+.menu-expanded {
+    position: fixed;
+  transition: all .25s;
+  line-height: 200px;
+  height: 100%;
+  width: 100%;
+  border-radius: 0px;
+}
+
+.menu-collapsed .menu-expander {
+    transition: all .25s;
+    width: 100%;
+    position:fixed;
+    top: 0;
+    left: 0;
+}
+
+.menu-expanded .menu-expander {
+    transition: all .25s;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.menu-expanded ul {
+  transition: all 0s;
+  position: fixed;
+  left: 0;
+  z-index: 2;
+  list-style-type:none;
+  width:100%;
+  text-align: center;
+  line-height: 100px;
+  padding-top: 100px;
+}
+.menu-expanded a {
+  transition: all .15s;
+  font-size: 2em;
+  padding: 5px;
+  color: black;
+}
+.menu-expanded .bar {
+  background-color: transparent;
+  transition: all .25s;
+}
+.menu-expanded .bar:before {
+  transform: rotate(45deg);
+}
+.menu-expanded .bar:after {
+  transform: rotate(-45deg);
+}
+.menu-title a {
+    font-size: 1em;
+    padding: 0;
+}

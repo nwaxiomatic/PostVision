@@ -1,2 +1,11 @@
-<h2>{{title}}</h2>
-{{{body}}}
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#appBG').vide({
+		mp4: '{{background_video.meta.file}}',
+		poster: '{{background_image.meta.file}}',
+	}, {
+		posterType: 'jpg',
+		origin: 'content-box',
+	});
+});
+</script>

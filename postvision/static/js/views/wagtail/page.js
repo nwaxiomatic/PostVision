@@ -7,20 +7,23 @@ define([
     var WagtailPageView = Backbone.View.extend({
         tagName: 'li',
 
-        events: {
-            'click .permalink': 'navigate'           
-        },
+        M2M: false,
 
-        initialize: function(){
+        initialize: function(options){
+            if(options.M2M){
+                this.M2M = options.M2M;
+            }
             var self = this;
             var appName = this.model.collection.appName;
             var modelName = this.model.collection.modelName;
+            if(this.M2M){
+                modelName += 'M2M';
+            }
             require(['hbs!templates/'+appName+'/'+modelName],
                 function (PageTemplate) {
                     self.template = PageTemplate
                     self.render();
             });
-            this.model.bind('change', this.render, this);
         },
 
         render: function(){

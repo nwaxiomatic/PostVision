@@ -1,3 +1,7 @@
-<li class="nav" >
-    <a class="permalink" href="/{{meta.slug}}/">{{ title }}</a>
-</li>
+<a class="permalink" href="/{{meta.slug}}/">
+{{#if feed_image }}
+<img class="img-circle navbar-image" src={{feed_image.meta.file}}>
+{{else}}
+{{ title }}
+{{/if}}
+</a>

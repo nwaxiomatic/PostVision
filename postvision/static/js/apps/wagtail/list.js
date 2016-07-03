@@ -4,7 +4,7 @@ define([
     'backbone',
 ], function($, _, Backbone){
     var WagtailListApp = Backbone.View.extend({
-        el: $("#app"),
+        el: "#app",
 
         initialize: function(options){
             if(!this.appName){
@@ -16,17 +16,18 @@ define([
                     'collections/'+appName,
                     'views/wagtail/list',
                     'hbs!templates/'+appName+'/list'], 
-                function ( Collection, ListView, ListTemplate ) {
-                    if (!app.collections[appName]){
-                        app.collections[appName] = new Collection;
-                    }
-                    self.collection = app.collections[appName];
-                    self.listView = ListView;
-                    self.template = ListTemplate;
-                    self.collection.maybeFetch({
-                        success: _.bind(self.render, self)
-                    });
+                    function ( Collection, ListView, ListTemplate ) {
+                self.listView = ListView;
+                self.template = ListTemplate;
+                if (!app.collections[appName]){
+                    app.collections[appName] = new Collection;
+                }
+                self.collection = app.collections[appName];
+                
+                self.collection.maybeFetch({
+                    success: _.bind(self.render, self)
                 });
+            });
         },
 
         rethrow: function(){
@@ -46,7 +47,7 @@ define([
                 function (ListView) {
                     app.listViews[appName] = new ListView({
                         collection: app.collections[appName],
-                        el: self.$('#'+appName),
+                        el: '#'+appName,
                     });
                     var list = app.listViews[appName];
                     list.addAll();
