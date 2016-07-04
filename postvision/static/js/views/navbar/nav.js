@@ -9,11 +9,12 @@ define([
         },
 
         clickPage: function(){
+            $('.menu-collapsed').toggleClass('menu-expanded');
             if(!this.$el.hasClass('active')){
                 this.resetBG();
             }
             this.highlight();
-            this.uncheckMenu();
+            //this.uncheckMenu();
         },
 
         resetBG: function() {

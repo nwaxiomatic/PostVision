@@ -14,9 +14,30 @@ require.config({
         imagesloaded: 'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
         templates: '../templates',
         backbonesuper: 'bower_components/backbone-super/backbone-super/backbone-super-min',
-        videojs: 'bower_components/video.js/dist/video.require',
+        videojs: 'bower_components/video.js/dist/video',
         vide: 'bower_components/vide/dist/jquery.vide.require',
     },
+
+    shim: {
+      "videojs":{
+         deps: ['jquery'],
+         exports:"videojs"
+
+       }
+    },
+
+    map: {
+  '*': {
+    'css': 'bower_components/require-css/css' // or whatever the path to require-css is
+  }
+},
+
+    css :{
+      buildCSS: false,
+      separateCSS: true,
+      dir: 'styles',
+  siteRoot: '../../',
+    }
 });
 
 require([

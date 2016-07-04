@@ -4,7 +4,7 @@ define([
 ], function(WagtailPage){
   var ArtworkModel = WagtailPage.extend({
     modelName: 'artworks.ArtworkPage',
-    fields: ['slug', 'title', 'image', 'description', 'video'],
+    fields: ['slug', 'title', 'date', 'image', 'video', 'description'],
     idAttribute: 'artwork_slug',
   });
   // Return the model for the module

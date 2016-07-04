@@ -46,26 +46,56 @@ a, a:visited{
     border: 5px solid white;
 }
 
+#appM2M ul{
+    padding-left: 0;
+    width: 70%;
+    list-style-type: none;
+    height: 100vh;
+}
+
+#appM2M li{
+    width: 100%;
+    margin-bottom: 50px;
+    height: 100%;
+}
+
+#appM2M ul img{
+    max-width: 100%;
+    max-height: 75%
+}
+
+#appM2M .video-js{
+    max-width: 100%;
+}
+
+p, h2, h1, h3, h4{
+    margin: 0;
+}
+
+.artwork-description {
+    font-family: Helvetica;
+    height: 60%;
+    font-size: 18px;
+}
+
 #artist-cover {
    position: relative;
    height: 400px; 
 }
 
 .artist-name {
+    position: fixed;
     text-align: right;
     font-size: 75px;
     z-index: 2;
+    right : 50px;
 }
 
 #artist-first-name {
-    position: absolute;
-    top : 15px;
-    right : 0px;
+    top : 115px; 
 }
 #artist-last-name {
-    position: absolute;
-    top : 80px;
-    right : 0px;
+    top : 180px;
 }
 
 #artist-profile-image {
@@ -103,18 +133,39 @@ a, a:visited{
     padding-left: 10px;
 }
 
+.center-side {
+    transition: all .7s;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1%
+}
+
 .arrow-down-check {
   display: none;
 }
 
 .arrow-down, .arrow-down:before, .arrow-down:after {
-    transition: all .25s;
+    transition: all .7s;
+    transition: bottom .7s;
     position: absolute;
     right: 0;
     content: "";
+    cursor: pointer;
+}
+
+.center-side:checked, .center-side:checked ~ .center-side {
+    transition: bottom .1s;
+    position: fixed;
+    left: 95%;
+    bottom: 10%
+}
+
+.arrow-down:before, .arrow-down:after {
     height: 4px;
     width: 30px;
-    cursor: pointer;
+    top: 10px;
+    background-color: #FA97FA;
 }
 
 .arrow-down{
@@ -122,17 +173,29 @@ a, a:visited{
     width: 60px;
 }
 
+.arrow-down div {
+    position: relative;
+    color: #FA97FA;
+    opacity: 0;
+    font-size: 15px;
+    width: 60px;
+    text-align: center;
+}
+
+.center-side:checked ~ .arrow-down div {
+    opacity: 1;
+    transition: all .7s;
+    color: #FA97FA;
+    top: 20px;
+}
+
 .arrow-down:before {
     left: 45%;
-    top: 10px;
     transform: rotate(-30deg);
-    background-color: black;
 }
-.arrow-down:after {
+.arrow-down:after { 
     right: 45%;
-    top: 10px;
     transform: rotate(30deg);
-    background-color: black;
 }
 
 .arrow-down-check:checked ~ .arrow-down:before {
@@ -160,6 +223,7 @@ html, body {
     height: 100px;
     position: relative;
     z-index: 100;
+    box-shadow: 1px 1px 1px #DDDDDD;
 }
 #app {
     width: 100%;

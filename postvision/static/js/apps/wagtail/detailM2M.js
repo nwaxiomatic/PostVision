@@ -17,12 +17,12 @@ define([
         initialize: function(options){
             this._super(options);
             _.bindAll(this, 'scrollPage');
-            // bind to window
+            $(window).scroll(this.resetTop);
             var self = this;
             $('html').on('DOMMouseScroll mousewheel', function(event){
                 self.scrollPage(event);
                 $('#M2Marrow-check').attr('disabled', 'disabled');
-                setTimeout("$('#M2Marrow-check').removeAttr('disabled');", 1000);
+                setTimeout("$('#M2Marrow-check').removeAttr('disabled');", 100);
             });
         },
 
@@ -45,7 +45,7 @@ define([
                 for(var i = 0; i < m2m.length; i++){
                     var m2mName = m2m[i][0] 
                     var listName = m2m[i][1] 
-                    $('#appM2M').append('<div id="' + listName + '"></div>');
+                    $('#appM2M').append('<ul id="' + listName + '"></ul>');
                     self.m2mCollections[listName] = new ListView({
                         collection: self.model.attributes[m2mName + '_collection'],
                         el: '#' + listName,
@@ -59,34 +59,38 @@ define([
         },
 
         clickPage: function(event){
-            $('#detail-block').toggleClass('hidden shown slide-up');
-            $('#appM2M').toggleClass('hidden shown no-height');
+            //$('#detail-block').toggleClass('hidden shown slide-up');
+            $('#appM2M').toggleClass('hidden shown');
             if( $('#M2Marrow-check').prop('checked') ){
+                $('#appM2M').toggleClass('no-height');
                 $('html, body').animate({
-                    scrollTop: $('#M2Marrow').offset().top - 20
+                    scrollTop: $('#appM2M').offset().top - 30
                 }, 'slow');
             }
             else{
+                setTimeout("$('#appM2M').toggleClass('no-height');", 600);
+                
                 $('html, body').animate({
-                    scrollTop: $('body').offset().top - 20
+                    scrollTop: $('body').offset().top
                 }, 'slow');
             }
+            this.lastScrollTop = $(this).scrollTop();
+        },
+
+        resetTop: function (event) {
+            var st = $(this).scrollTop();
+            if(st ==0 && st < this.lastScrollTop && $('#M2Marrow-check').prop('checked')){
+                $("#M2Marrow-check").click();
+            }
+            this.lastScrollTop = st;
         },
 
         scrollPage: function(event) {
-            event.preventDefault();
             var delta = (event.originalEvent.wheelDelta || -event.originalEvent.detail);
             var checked = $('#M2Marrow-check').prop('checked');
-            if( (!checked && delta < -30) || (checked && delta > 30)){
-                console.log($("#M2Marrow-check"));
+            if(!checked && delta < -10){
+                event.preventDefault();
                 $("#M2Marrow-check").click();
-            }
-            if (delta < -30) {
-                console.log(checked);
-                console.log('You scrolled up');
-            } else if (delta > 30) {
-                console.log(checked);
-                console.log('You scrolled down');
             }
         },
     });

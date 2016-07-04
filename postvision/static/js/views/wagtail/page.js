@@ -6,7 +6,7 @@ define([
 ], function($, hbs, _, Backbone){
     var WagtailPageView = Backbone.View.extend({
         tagName: 'li',
-
+        
         M2M: false,
 
         initialize: function(options){
