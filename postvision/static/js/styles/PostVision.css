@@ -2,6 +2,60 @@ a, a:visited{
     text-decoration: none;
     color: black;
 }
+
+h2 {
+  font-size: 144px;
+}
+
+h3 {
+  font-size: 72px;
+}
+
+h4 {
+  font-size: 48px;
+}
+
+.white-text {
+  color:white;
+}
+
+.center-text{
+  text-align: center;
+}
+
+#scrollBar {
+  position: fixed;
+  width: 10px;
+  height: 100%;
+  right: -10px;
+}
+
+body:-webkit-scrollbar-thumb ~ #scrollBar {
+  width: 30px;
+}
+
+body::-webkit-scrollbar {
+  transition: all 1s;
+    width: 10px;
+    position: fixed;
+    right: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  transition: all 1s;
+  background-color: #FA97FA;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+
+.app-title {
+  width: 100%;
+  text-align: center;
+  font-size: 72px;
+}
 .center {
     position: relative;
     left: 50%;
@@ -11,22 +65,6 @@ a, a:visited{
 .no-height {
     height: 0px;
     overflow: hidden;
-}
-
-.hidden {
-    transition: all .25s;
-    visibility: hidden;
-    opacity: 0;
-}
-
-.shown {
-    transition: all .25s;
-    visibility: visible;
-    opacity: 1;
-}
-
-.col-xs-12 {
-    width: 100%;
 }
 
 .right-align {
@@ -46,17 +84,58 @@ a, a:visited{
     border: 5px solid white;
 }
 
+.app-body {
+  width: 100%;
+  height: 100%;
+  padding: 100px;
+  box-sizing: border-box;
+}
+
+#artists{
+    padding-left: 0;
+    width: 100%;
+    list-style-type: none;
+}
+
+.artist-feed-image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.artist-feed-image-height {
+  transition: all .5s;
+  height: 0;
+  padding-bottom: 100%;
+  background-size: cover;
+  background-repeat:no-repeat;
+background-position: center center;
+}
+
+.artist:hover .artist-feed-image-height {
+  transition: all .5s;
+    box-shadow:0px 0px 0px 5px #FA97FA inset;
+}
+
+.artist:hover .artist-feed-name {
+  transition: all .5s;
+  color: #7FBFFA;
+}
+
+.artist-feed-name {
+  transition: all .5s;
+  width: 100%;
+  text-align: center;
+}
+
 #appM2M ul{
     padding-left: 0;
     width: 70%;
     list-style-type: none;
-    height: 100vh;
 }
 
 #appM2M li{
     width: 100%;
-    margin-bottom: 50px;
-    height: 100%;
+    margin-bottom: 100px;
 }
 
 #appM2M ul img{
@@ -81,6 +160,7 @@ p, h2, h1, h3, h4{
 #artist-cover {
    position: relative;
    height: 400px; 
+   margin-top: 80px
 }
 
 .artist-name {
@@ -92,10 +172,10 @@ p, h2, h1, h3, h4{
 }
 
 #artist-first-name {
-    top : 115px; 
+    top : 225px; 
 }
 #artist-last-name {
-    top : 180px;
+    top : 290px;
 }
 
 #artist-profile-image {
@@ -138,7 +218,8 @@ p, h2, h1, h3, h4{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 1%
+    bottom: 1%;
+    z-index: 5;
 }
 
 .arrow-down-check {
@@ -286,18 +367,27 @@ html, body {
 }
 
 .menu-collapsed {
-  transition: all .25s;
-  position: absolute;
+  transition: all 1s;
+  position: relative;
+  line-height: 200px;
+  height: 0;
   width: 100%;
-  z-index: 1;
+  border-radius: 0px;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0);
 }
 .menu-collapsed ul {
-  transition: all 0s;
+  transition: all 1s;
   position: fixed;
-  left: -9000px;
-  padding: 0;
+  padding-left: 0;
+  left: 0;
+  top: -100%;
+  z-index: 2;
+  width:100%;
+  text-align: center;
+  line-height: 100px;
+  padding-top: 100px;
+  list-style-type: none;
 }
 
 .bar {
@@ -327,16 +417,14 @@ html, body {
 }
 
 .menu-expanded {
-    position: fixed;
-  transition: all .25s;
-  line-height: 200px;
+  transition: all 1s;
+  position: fixed;
   height: 100%;
-  width: 100%;
-  border-radius: 0px;
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .menu-collapsed .menu-expander {
-    transition: all .25s;
+    transition: all 1s;
     width: 100%;
     position:fixed;
     top: 0;
@@ -344,25 +432,17 @@ html, body {
 }
 
 .menu-expanded .menu-expander {
-    transition: all .25s;
+    transition: all 1s;
   height: 100%;
   width: 100%;
   text-align: center;
 }
 
 .menu-expanded ul {
-  transition: all 0s;
-  position: fixed;
-  left: 0;
-  z-index: 2;
-  list-style-type:none;
-  width:100%;
-  text-align: center;
-  line-height: 100px;
-  padding-top: 100px;
+  transition: all 1s;
+  top: 0;
 }
-.menu-expanded a {
-  transition: all .15s;
+.nav a {
   font-size: 2em;
   padding: 5px;
   color: black;
@@ -380,4 +460,30 @@ html, body {
 .menu-title a {
     font-size: 1em;
     padding: 0;
+}
+
+.hidden {
+    transition: all 1s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.shown {
+    transition: all 2s;
+    visibility: visible;
+    opacity: 1;
+}
+
+.hidden-menu {
+    transition: all 1s;
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: 4px 4px 4px #FFFFFF;
+}
+
+.shown-menu {
+  transition: all 1s;
+  box-shadow: 1px 1px 1px #DDDDDD;
+  visibility: visible;
+    opacity: 1;
 }

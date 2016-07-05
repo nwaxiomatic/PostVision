@@ -4,18 +4,25 @@
 
 <!DOCTYPE html>
     <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
         {% require_module 'main' %}
-       	<link rel="stylesheet" type="text/css" href="{% static 'js/styles/PostVision.css' %}">
+       	<link rel="stylesheet" type="text/css" href="{% static 'js/styles/PostVision.css' %}" >
+
+        <link rel="stylesheet" type="text/css" href="{% static 'js/styles/PostVision-mobile.css' %}" media="only screen and (max-device-width: 640px)">
+        <link rel="stylesheet" type="text/css" href="{% static 'js/styles/PostVision-desktop.css' %}" media="only screen and (min-device-width: 640px)">
+
         <link rel="stylesheet" type="text/css" href="{% static 'js/fonts/font.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'js/styles/font-awesome.min.css' %}">
         <link href="http://vjs.zencdn.net/5.10.4/video-js.css" rel="stylesheet">
+        <link href="{% static 'js/styles/grid.css' %}" rel="stylesheet">
 
     </head>
     <body>
+        <div id="scrollBar"></div>
         <div id="container">
-            <div id="menu"></div>
-            <div id="appBG-box"><div id="appBG"></div></div>
-            <div id="app"></div>
+            <div id="menu" class="hidden-menu"></div>
+            <div id="appBG-box" class="hidden"><div id="appBG"></div></div>
+            <div id="app" class="hidden"></div>
         </div>
     </body>
 </html>

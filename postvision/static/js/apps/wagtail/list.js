@@ -2,9 +2,9 @@ define([
     'jquery',
     'underscore',
     'backbone',
-], function($, _, Backbone){
-    var WagtailListApp = Backbone.View.extend({
-        el: "#app",
+    'apps/wagtail/app',
+], function($, _, Backbone, WagtailApp){
+    var WagtailListApp = WagtailApp.extend({
 
         initialize: function(options){
             if(!this.appName){
@@ -35,13 +35,16 @@ define([
         },
 
         render: function(){
-            var appName = this.appName;
+            this.renderAnimation(this.$el);
+        },
 
+        renderApp: function(){
             var options = {}
             options[this.appName] = this.collection.models
             var compiledTemplate = this.template(options);
             this.$el.html( compiledTemplate );
-
+            var appName = this.appName;
+            var self = this;
             require([
                     'views/wagtail/list'],
                 function (ListView) {
@@ -51,7 +54,7 @@ define([
                     });
                     var list = app.listViews[appName];
                     list.addAll();
-                    list.bind('all', this.rethrow, this);
+                    list.bind('all', self.rethrow, self);
             });
         },
     });

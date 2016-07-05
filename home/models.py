@@ -154,15 +154,15 @@ StandardIndexPage.promote_panels = Page.promote_panels + [
 # Standard page
 
 class StandardPageCarouselItem(Orderable, CarouselItem):
-    page = ParentalKey('home.StandardPage', related_name='carousel_items')
+    page = ParentalKey('home.StandardPage', related_name='standard_carousel_items')
 
 
 class StandardPageRelatedLink(Orderable, RelatedLink):
-    page = ParentalKey('home.StandardPage', related_name='related_links')
+    page = ParentalKey('home.StandardPage', related_name='standard_related_links')
 
 
 class StandardPage(Page):
-    intro = RichTextField(blank=True)
+    menu_order = models.IntegerField(default=0)
     body = RichTextField(blank=True)
     feed_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -171,23 +171,33 @@ class StandardPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-
+    background_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    background_video = models.ForeignKey(
+        'wagtaildocs.Document',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    body_classes = models.CharField(max_length=255, blank=True, null=True)
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
         index.SearchField('body'),
     ]
 
-    api_fields = ['title', 'intro', 'body']
+    api_fields = HomePage.api_fields +['body_classes']
 
-StandardPage.content_panels = [
-    FieldPanel('title', classname="full title"),
-    FieldPanel('intro', classname="full"),
-    #InlinePanel('carousel_items', label="Carousel items"),
-    FieldPanel('body', classname="full"),
-    InlinePanel('sitesocialmediacontact', label="Social Media Links"),
-    #InlinePanel('related_links', label="Related links"),
+    class Meta:
+        verbose_name = "Standard Page"
+
+StandardPage.content_panels = HomePage.content_panels + [
+    FieldPanel('menu_order'),
+    FieldPanel('body_classes'),
 ]
 
-StandardPage.promote_panels = Page.promote_panels + [
-    ImageChooserPanel('feed_image'),
-]
+StandardPage.promote_panels = Page.promote_panels

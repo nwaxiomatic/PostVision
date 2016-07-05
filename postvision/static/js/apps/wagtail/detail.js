@@ -1,9 +1,9 @@
 define([
     'jquery',
     'backbone',
-], function($, Backbone){
-    var WagtailDetailApp = Backbone.View.extend({
-        el: "#app",
+    'apps/wagtail/app',
+], function($, Backbone, WagtailApp){
+    var WagtailDetailApp = WagtailApp.extend({
 
         initialize: function(options){
             var self = this;
@@ -34,6 +34,8 @@ define([
             var self = this;
             require(['hbs!templates/'+self.appName+'/detail'], 
                 function ( template ) {
+                    console.log($(el));
+                    self.renderAnimation($(el));
                     $(el).html(template(self.model.toJSON()));
             });
             return this;

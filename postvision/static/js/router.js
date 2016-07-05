@@ -13,12 +13,16 @@ define([
 ], function($, hbs, _, Backbone, BackboneSuper, videojs, vide, css, WagtailNavbarApp, WagtailListApp, 
         WagtailDetailApp){
     var AppRouter = Backbone.Router.extend({
-        detailPages: ['contact', 'about'],
+        detailPages: ['contact', 'info'],
         routes: {
             '(:appName/)(:slug/)': 'picker',
             '*actions': 'defaultAction',
         },
         picker: function(appName, slug){
+            if(app.currentApp){
+                app.currentApp.undelegateEvents();
+                delete app.currentApp;
+            }
             this.navbar();
             if(!appName){
                 this.detail('pages', 'home');
@@ -29,11 +33,13 @@ define([
             else{
                 this.detail(appName, slug);
             }
+            app.currentApp.delegateEvents();
         },
         navbar: function(){
             var appName = 'navbar';
             if(!app.listApps[appName]){
                 app.listApps[appName] = new WagtailNavbarApp({});
+                setTimeout("$('#menu').addClass('shown-menu');", 1000);
             }
         },
         list: function(appName){
@@ -41,16 +47,26 @@ define([
                 app.listApps[appName] = new WagtailListApp({
                     appName: appName, 
                 });
+                app.currentApp = app.listApps[appName];
             }
             else{
                 this.detail('standardpages', appName);
             }
         },
         detail: function(appName, slug){
-            app.detailApps[appName] = new WagtailDetailApp({
-                appName: appName,
-                slug: slug,
-            });
+            if(!app.detailApps[appName]){
+                app.detailApps[appName] = {};
+            }
+            if(!app.detailApps[appName][slug]){
+                app.detailApps[appName][slug] = new WagtailDetailApp({
+                    appName: appName,
+                    slug: slug,
+                });
+            }
+            else {
+                app.detailApps[appName][slug].render();
+            }
+            app.currentApp = app.detailApps[appName][slug];
         },
         defaultAction: function(actions){
             // We have no matching route, lets just log what the URL was
@@ -66,10 +82,12 @@ define([
         app.detailApps = {};
         app.router = new AppRouter;
         app.router.on();
+        app.firstLoad = true;
         Backbone.history.start({
             pushState: true, 
             silent: app.router.loaded
         });
+        app.currentApp = undefined;
         $(document).on("click", "a[href^='/']", function(event){
             href = $(event.currentTarget).attr('href');
             passThrough = (href.indexOf('sign_out') >= 0);

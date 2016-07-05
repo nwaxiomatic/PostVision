@@ -1,0 +1,9 @@
+#artist-first-name {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+body {
+  background-color: black;
+  color:white;
+}

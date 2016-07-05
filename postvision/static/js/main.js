@@ -16,6 +16,7 @@ require.config({
         backbonesuper: 'bower_components/backbone-super/backbone-super/backbone-super-min',
         videojs: 'bower_components/video.js/dist/video',
         vide: 'bower_components/vide/dist/jquery.vide.require',
+        mousewheel: 'bower_components/mousewheel/mousewheel',
     },
 
     shim: {

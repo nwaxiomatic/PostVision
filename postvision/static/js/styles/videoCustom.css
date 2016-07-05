@@ -24,15 +24,15 @@
    To center it set the align values to center and middle. The typical location
    of the button is the center, but there is trend towards moving it to a corner
    where it gets out of the way of valuable content in the poster image.*/
-.vjs-default-skin .vjs-big-play-button {
+.vjs-sublime-skin .vjs-big-play-button {
   /* The font size is what makes the big play button...big. 
      All width/height values use ems, which are a multiple of the font size.
-     If the .video-js font-size is 10px, then 3em equals 30px.*/
+     If the .video-js font-size is 10px, then 3em equals 3em.*/
   font-size: 10em;
   /* We're using SCSS vars here because the values are used in multiple places.
      Now that font size is set, the following em values will be a multiple of the
-     new font size. If the font-size is 3em (30px), then setting any of
-     the following values to 3em would equal 30px. 3 * font-size. */
+     new font size. If the font-size is 3em (3em), then setting any of
+     the following values to 3em would equal 3em. 3 * font-size. */
   /* 1.5em = 45px default */
   line-height: 1.2em;
   height: 1.2em;
@@ -68,31 +68,156 @@
 
 /* Slider - used for Volume bar and Progress bar */
 .video-js .vjs-slider {
-  background-color: white;
+  background-color: #FA97FA;
   background-color: rgba(255, 255, 255, 0.5);
 }
 
+.video-js .vjs-menu-button-inline:hover,
+.video-js .vjs-menu-button-inline:focus,
+.video-js .vjs-menu-button-inline.vjs-slider-active,
+.video-js.vjs-no-flex .vjs-menu-button-inline {
+  width: 3em; }
+
 /* The slider bar color is used for the progress bar and the volume bar
    (the first two can be removed after a fix that's coming) */
-.video-js .vjs-volume-level,
-.video-js .vjs-play-progress,
-.video-js .vjs-slider-bar {
+.hu-css .vjs-progress-holder { /* Box containing play and load progresses */
+  height: 3em; border: none;
+  margin: 0px 0px 0 0px; /* Placement within the progress control item */
+  background: white;
+}
+.hu-css .vjs-progress-holder div { height: 28px; }
+.hu-css .vjs-play-progress {
+  /* Default */ background: #FA97FA;
+}
+.hu-css .vjs-load-progress { height: 0px; background: white; }
+
+.hu-css .vjs-controls > div.vjs-progress-control, .hu-css .vjs-controls > div.vjs-time-control {
+  margin-top: 3em; height: 3em;
+}
+
+.vjs-sublime-skin .vjs-poster {
+  outline: none;
+  outline: 0;
+}
+
+.vjs-sublime-skin .vjs-fullscreen-control:before, 
+.vjs-sublime-skin.vjs-fullscreen .vjs-fullscreen-control:before {
+  content: '';
+}
+
+.vjs-sublime-skin.vjs-fullscreen .vjs-fullscreen-control {
   background: #fff;
 }
 
-/* The main progress bar also has a bar that shows how much has been loaded. */
-.video-js .vjs-load-progress {
-  /* For IE8 we'll lighten the color */
-  background: ligthen(white, 25%);
-  /* Otherwise we'll rely on stacked opacities */
-  background: rgba(255, 255, 255, 0.5);
+.vjs-sublime-skin .vjs-fullscreen-control {
+  border: 3px solid #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin-top: -7px;
+  top: 50%;
+  height: 14px;
+  width: 22px;
+  margin-right: 10px;
 }
 
-/* The load progress bar also has internal divs that represent
-   smaller disconnected loaded time ranges */
-.video-js .vjs-load-progress div {
-  /* For IE8 we'll lighten the color */
-  background: ligthen(white, 50%);
-  /* Otherwise we'll rely on stacked opacities */
-  background: rgba(255, 255, 255, 0.75);
+.vjs-sublime-skin.vjs-fullscreen .vjs-fullscreen-control:after {
+  background: #000;
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  width: 5px;
+}
+
+.vjs-sublime-skin .vjs-progress-holder {
+  margin: 0;
+}
+
+.vjs-progress-holder {
+  height: 0px;
+}
+
+.video-js .vjs-progress-control:hover .vjs-progress-holder {
+  font-size: 1em; }
+
+  .video-js .vjs-progress-control:hover .vjs-mouse-display {
+  display: none; }
+
+.vjs-sublime-skin .vjs-progress-control .vjs-progress-holder:after {
+  display: block;
+  height: 3em;
+}
+
+.video-js .vjs-progress-control:hover .vjs-time-tooltip,
+.video-js .vjs-progress-control:hover .vjs-mouse-display:after,
+.video-js .vjs-progress-control:hover .vjs-play-progress:after {
+  font-family: Arial, Helvetica, sans-serif;
+  visibility: hidden;}
+
+.vjs-sublime-skin .vjs-progress-control .vjs-load-progres, 
+.vjs-sublime-skin .vjs-progress-control .vjs-play-progress {
+  height: 3em;
+}
+
+.vjs-sublime-skin .vjs-playback-rate {
+  display: none;
+}
+
+.vjs-sublime-skin .vjs-progress-control {
+  margin-right: 40px;
+}
+
+.vjs-sublime-skin .vjs-time-control {
+  right: 40px;
+}
+
+.vjs-sublime-skin .vjs-mute-control:before, .vjs-sublime-skin .vjs-volume-menu-button:before, .vjs-sublime-skin .vjs-mute-control.vjs-vol-0:before, .vjs-sublime-skin .vjs-volume-menu-button.vjs-vol-0:before, .vjs-sublime-skin .vjs-mute-control.vjs-vol-1:before, .vjs-sublime-skin .vjs-volume-menu-button.vjs-vol-1:before, .vjs-sublime-skin .vjs-mute-control.vjs-vol-2:before, .vjs-sublime-skin .vjs-volume-menu-button.vjs-vol-2:before {
+  content: '';
+}
+
+.vjs-sublime-skin .vjs-menu-button-inline .vjs-menu, .vjs-sublime-skin .vjs-menu-button-inline:focus .vjs-menu, .vjs-sublime-skin .vjs-menu-button-inline.vjs-slider-active .vjs-menu {
+  display: block;
+  opacity: 1;
+}
+
+.vjs-sublime-skin .vjs-volume-menu-button {
+  width: 3em;
+  position: absolute;
+  right: 0;
+  margin-right: 40px;
+}
+
+.vjs-menu-button-inline .vjs-menu {
+  position: static;
+}
+
+.vjs-sublime-skin .vjs-menu-button-inline .vjs-menu {
+  left: 0;
+}
+
+.vjs-sublime-skin .vjs-mouse-display:before, .vjs-sublime-skin .vjs-play-progress:before, .vjs-sublime-skin .vjs-volume-level:before {
+  content: '';
+}
+
+.vjs-sublime-skin .vjs-volume-bar {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAcCAQAAACw95UnAAAAMElEQVRIx2NgoBL4n4YKGUYNHkEG4zJg1OCRYDCpBowaPJwMppbLRg0eNXjUYBLEAXWNUA6QNm1lAAAAAElFTkSuQmCC);
+  background-size: 22px 14px;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  max-width: 22px;
+  max-height: 14px;
+  margin: 7px 4px;
+  border-radius: 0;
+}
+
+.vjs-sublime-skin .vjs-volume-level {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAcAQAAAAAyhWABAAAAAnRSTlMAAHaTzTgAAAAZSURBVHgBYwAB/g9EUv+JokCqiaT+U4MCAPKPS7WUUOc1AAAAAElFTkSuQmCC);
+  background-size: 22px 14px;
+  background-repeat: no-repeat;
+  max-width: 22px;
+  max-height: 14px;
+  height: 100%;
 }
