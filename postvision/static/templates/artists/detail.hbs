@@ -1,13 +1,19 @@
 <div id="detail-block">
 <div id="artist-cover" class="col-xs-12" >
-    <div id="artist-first-name" class="artist-name">
-        {{uppercase first_name}}
+    <div id="artist-profile-image-block">
+        <div class="img-circle" id="artist-profile-image" >
+            <div class='artist-feed-image-height' style="background-image: url('{{profile_picture.meta.file}}')">
+            </div>
+        </div>
     </div>
-    <div id="artist-last-name" class="artist-name">
-        {{uppercase last_name}}
-    </div>
-    <div class="img-circle" id="artist-profile-image" >
-        <div class='artist-feed-image-height' style="background-image: url('{{profile_picture.meta.file}}')">
+    <div id="artist-name-block"> 
+        <div id="artist-name">        
+            <span id="artist-first-name" class="artist-name">
+                {{uppercase first_name}}
+            </span>
+            <span id="artist-last-name" class="artist-name">
+                {{uppercase last_name}}
+            </span>
         </div>
     </div>
 </div>
@@ -27,5 +33,7 @@
 </div>
     </div>
 
+<div id="arrow-down-block">
 <input class="arrow-down-check center-side" id="M2Marrow-check" type="checkbox">
     <label for="M2Marrow-check" id="M2Marrow" class="arrow-down center-side"><div>TOP</div></label>
+    </div>

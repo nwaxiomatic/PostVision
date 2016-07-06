@@ -38,7 +38,7 @@ define([
                 
                 self.$el.html(fulltemplate({}));
                 $('#appDetail').html(template(self.model.toJSON()));
-                $('#appM2M').addClass('hidden no-height col-xs-12');
+                $('#appM2M').addClass('hidden-desktop no-height-desktop col-xs-12');
                 $('#detail-block').addClass('shown');
                 var m2m = self.model.manytomanyfields;
                 if(!m2m){
@@ -60,53 +60,60 @@ define([
         },
 
         mousewheel: function(event, delta, deltaX, deltaY){
-            var checked = $('#M2Marrow-check').prop('checked');
-            if(!checked && $('#M2Marrow-check').length > 0) {
-                event.preventDefault();
-            };
-            this.resetTop(event);
-            if(!this.scrollEnabled) {
-                return;
-            };
-            this.scrollPage(event);
-            this.navigateTo(event, delta, deltaX, deltaY);
-            $('#M2Marrow-check').attr('disabled', 'disabled');
-            setTimeout("$('#M2Marrow-check').removeAttr('disabled');", 100);
+            console.log(app.scrollEnabled);
+            if(!app.isMobile){
+                var checked = $('#M2Marrow-check').prop('checked');
+                if(!checked && $('#M2Marrow-check').length > 0) {
+                    event.preventDefault();
+                };
+                this.resetTop(event);
+                if(!app.scrollEnabled) {
+                    return;
+                };
+                this.scrollPage(event);
+                this.navigateTo(event, delta, deltaX, deltaY);
+                $('#M2Marrow-check').attr('disabled', 'disabled');
+                setTimeout("$('#M2Marrow-check').removeAttr('disabled');", 100);
+            }
         },
 
         navigateTo: function(event, delta, deltaX, deltaY){
             if(Math.abs(delta) > 0){
-                this.scrollEnabled = false;
-           var self = this;
-           setTimeout(function() {
-            self.scrollEnabled=true;
-           },1000);
+                app.scrollEnabled = false;
+                var self = this;
+                setTimeout(function() {
+                    app.scrollEnabled=true;
+                },1000);
             }
         },
 
         clickPage: function(event){
-            var scrolltime = 1500;
-            this.scrollEnabled = false;
-            setTimeout(this.enableScroll, scrolltime);
+            console.log('clicked');
             //$('#detail-block').toggleClass('hidden shown slide-up');
-            $('#appM2M').toggleClass('hidden shown');
+            $('#appM2M').toggleClass('hidden-desktop shown');
+            var scrolltime = 1500;
+            app.scrollEnabled = false;
+            setTimeout(this.enableScroll, scrolltime);
             if( $('#M2Marrow-check').prop('checked') ){
-                $('#appM2M').toggleClass('no-height');
-                $('html, body').animate({
-                    scrollTop: $('#appM2M').offset().top
-                }, scrolltime);
+                $('#appM2M').toggleClass('no-height-desktop');
+                if(!app.isMobile){
+                    $('html, body').animate({
+                        scrollTop: $('#appM2M').offset().top
+                    }, scrolltime);
+                }
             }
             else{
-                setTimeout("$('#appM2M').toggleClass('no-height');", scrolltime);
-                $('html, body').animate({
-                    scrollTop: $('body').offset().top
-                }, scrolltime);
+                setTimeout("$('#appM2M').toggleClass('no-height-desktop');", scrolltime);
+                if(!app.isMobile){
+                    $('html, body').animate({
+                        scrollTop: $('body').offset().top
+                    }, scrolltime);
+                }
             }
-            this.lastScrollTop = $('body').scrollTop();
         },
 
         scrollEvent: function(event){
-            if(!this.scrollEnabled){
+            if(!app.scrollEnabled){
                 event.preventDefault();
             }
             else {
@@ -132,8 +139,8 @@ define([
         },
 
         enableScroll: function(){
-            this.scrollEnabled = true;
-        }
+            app.scrollEnabled = true;
+        },
     });
     // Our module now returns our view
     return DetailM2MApp;

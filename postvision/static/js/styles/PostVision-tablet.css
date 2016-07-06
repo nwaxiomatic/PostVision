@@ -1,0 +1,78 @@
+.artist-name {
+    float: left;
+}
+
+#artist-name {
+    margin: 0 auto;
+    padding: 0;
+    display: inline-block;
+}
+
+#artist-first-name {
+    padding-right: 20px;
+}
+
+#artist-profile-image-block, #artist-name-block {
+  position: relative;
+  text-align:center;
+}
+
+#artist-profile-image-block {
+    padding-top: 60px
+}
+
+#artist-profile-image {
+    margin: auto;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#artist-profile-image img {
+    max-width: 400px;
+}
+
+#artist-bio {
+    text-align: justify;
+    font-size: 18px;
+    font-family: Helvetica;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-sizing: border-box;
+}
+
+#artist-social li {
+    display: inline;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+#artist-social ul {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#appM2M ul img{
+    max-width: 100%;
+}
+
+#appM2M ul {
+    list-style-type: none;
+}
+
+#appM2M {
+    padding-left: 50px;
+    padding-right: 50px;
+    box-sizing: border-box;
+}
+
+#appM2M ul{
+    padding: 0;
+}
+
+.artwork-text {
+    padding: 0;
+}
+
+#arrow-down-block {
+    display: none;
+}

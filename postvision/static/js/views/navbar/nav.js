@@ -10,6 +10,8 @@ define([
 
         clickPage: function(){
             $('.menu-collapsed').toggleClass('menu-expanded');
+            $('.menu-text').toggleClass('shown');
+            app.scrollEnabled = true;
             if(!this.$el.hasClass('active')){
                 this.resetBG();
             }

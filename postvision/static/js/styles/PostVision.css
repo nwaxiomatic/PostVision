@@ -97,6 +97,18 @@ html {
     list-style-type: none;
 }
 
+#artist-social ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#appM2M li{
+    width: 100%;
+    margin-bottom: 100px;
+}
+
 .artist-feed-image {
     width: 100%;
     overflow: hidden;
@@ -127,20 +139,21 @@ background-position: center center;
   text-align: center;
 }
 
-#appM2M ul{
-    padding-left: 0;
-    width: 70%;
-    list-style-type: none;
+.artist-name {
+    font-size: 75px;
 }
 
-#appM2M li{
-    width: 100%;
-    margin-bottom: 100px;
+
+
+#artist-profile-image {
+    height: 400px;
+    width: 400px;
+    z-index: 1;
+    overflow: hidden;
 }
 
-#appM2M ul img{
-    max-width: 100%;
-    max-height: 75%
+#artist-profile-image img {
+    max-width: 400px;
 }
 
 #appM2M .video-js{
@@ -155,62 +168,11 @@ p, h2, h1, h3, h4{
     font-family: Helvetica;
     height: 60%;
     font-size: 18px;
-}
-
-#artist-cover {
-   position: relative;
-   height: 400px; 
-   margin-top: 80px
-}
-
-.artist-name {
-    position: fixed;
-    text-align: right;
-    font-size: 75px;
-    z-index: 2;
-    right : 50px;
-}
-
-#artist-first-name {
-    top : 225px; 
-}
-#artist-last-name {
-    top : 290px;
-}
-
-#artist-profile-image {
-    height: 400px;
-    width: 400px;
-    position: absolute;
-    top : 0px;
-    right : 70px;
-    z-index: 1;
-    overflow: hidden;
-}
-
-#artist-profile-image img {
-    max-width: 400px;
-}
-
-#artist-bio {
-    position: relative;
-    padding-left: 40%;
     text-align: justify;
-    box-sizing: border-box;
-    font-size: 18px;
-    font-family: Helvetica;
 }
 
-#artist-social ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-#artist-social li {
-    float: right;
-    padding-left: 10px;
+#M2Marrow-block {
+  position: relative;
 }
 
 .center-side {
@@ -306,12 +268,6 @@ html, body {
     z-index: 100;
     box-shadow: 1px 1px 1px #DDDDDD;
 }
-#app {
-    width: 100%;
-    padding: 50px;
-    padding-top: 0px;
-    box-sizing: border-box;
-}
 
 #appDetail{
     width: 100%;
@@ -381,7 +337,8 @@ html, body {
   position: fixed;
   padding-left: 0;
   left: 0;
-  top: -100%;
+  top: 0;
+  transform: translateY(-100%);
   z-index: 2;
   width:100%;
   text-align: center;
@@ -440,7 +397,7 @@ html, body {
 
 .menu-expanded ul {
   transition: all 1s;
-  top: 0;
+  transform: translateY(0);
 }
 .nav a {
   font-size: 2em;

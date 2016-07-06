@@ -21,7 +21,6 @@ define([
         picker: function(appName, slug){
             if(app.currentApp){
                 app.currentApp.undelegateEvents();
-                delete app.currentApp;
             }
             this.navbar();
             if(!appName){
@@ -72,10 +71,25 @@ define([
             // We have no matching route, lets just log what the URL was
             console.log('No route:', actions);
         },
+
+        checkMobile: function(){
+            if( !app.isMobile && $( window ).width() <= app.mobileSize){
+                app.isMobile = true;
+                app.scrollEnabled = true;
+                if(!$('#M2Marrow-check').prop('checked')){
+                    $("#M2Marrow-check").click();
+                }
+            }
+            else if ( app.isMobile && $( window ).width() > app.mobileSize){
+                app.isMobile = false;
+                app.scrollEnabled = true;
+            }
+        },
     });
 
     var initialize = function(){
         window.app = window.app || {};
+        app.currentApp = undefined;
         app.collections = {};
         app.listViews = {};
         app.listApps = {};
@@ -83,11 +97,17 @@ define([
         app.router = new AppRouter;
         app.router.on();
         app.firstLoad = true;
+        app.isMobile = false;
+        app.mobileSize = 1000;
+        app.scrollEnabled = true;
         Backbone.history.start({
             pushState: true, 
             silent: app.router.loaded
         });
-        app.currentApp = undefined;
+        app.router.checkMobile();
+        $( window ).resize( function(){
+            app.router.checkMobile();
+        });
         $(document).on("click", "a[href^='/']", function(event){
             href = $(event.currentTarget).attr('href');
             passThrough = (href.indexOf('sign_out') >= 0);

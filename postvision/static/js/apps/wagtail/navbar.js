@@ -9,6 +9,7 @@ define([
         	'click .bar' : 'expandMenu',
         },
         expandMenu: function(){
+            $('.menu-text').toggleClass('shown');
             $('.menu-collapsed').toggleClass("menu-expanded");
         }
     });
