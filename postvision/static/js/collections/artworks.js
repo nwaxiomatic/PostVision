@@ -7,6 +7,7 @@ define([
     modelName: 'artwork',
     pageType: 'ArtworkPage',
     fields: ['slug', 'title', 'date', 'image', 'video', 'description'],
+    order: 'date',
     parse: function(response) {
         return response.items;
     },

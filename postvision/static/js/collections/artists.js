@@ -6,7 +6,8 @@ define([
     appName: 'artists',
     modelName: 'artist',
     pageType: 'ArtistProfilePage',
-    fields: ['slug', 'first_name', 'last_name', 'title', 'profile_picture'],
+    fields: ['slug', 'first_name', 'last_name', 'title', 'profile_picture_url'],
+    order: '-title',
     parse: function(response) {
             return response.items;
         },

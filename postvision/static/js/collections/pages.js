@@ -14,7 +14,11 @@ define([
     	if (this.ids.length > 0){
     		urlBase += '&id=' + this.ids.join('*');
     	}
-        return urlBase;
+      if( this.order ){
+        urlBase += '&order=' + this.order;
+      }
+
+      return urlBase;
     },
   });
   // You don't usually return a collection instantiated

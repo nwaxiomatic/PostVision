@@ -5,7 +5,7 @@ define([
     modelName: 'artists.ArtistProfilePage',
     fields: ['slug', 'title', 'profile_picture', 'bio', 
     	'profile_picture', 'first_name', 'last_name',
-    	'artistartworklink', 'sitesocialmediacontact'],
+    	'artistartworklink', 'sitesocialmediacontact', 'profile_picture_url'],
     idAttribute: 'artist_slug',
     manytomanyfields: [['artistartworklink', 'artworks', 'artwork'],],
   });

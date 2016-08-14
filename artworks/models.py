@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import datetime
+
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -24,7 +26,7 @@ from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 
 class ArtworkPage(Page):
     description = RichTextField(blank=True, null=True)
-    date = models.DateField("Post date")
+    date = models.DateField("Post date", default=datetime.date.today)
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -45,7 +47,11 @@ class ArtworkPage(Page):
         FieldPanel('date'),
         ImageChooserPanel('image'),
         DocumentChooserPanel('video'),
-        InlinePanel('artworkartistlink', label="Artist Attributes"),
+        InlinePanel('artworkartistlink', label="Artist Attributes",
+            panels = [
+                PageChooserPanel('artist', 'artists.ArtistProfilePage'),
+            ]
+        ),
     ]
 
     api_fields = ['slug', 'title', 'description', 'date', 'image', 'video']
@@ -62,8 +68,24 @@ class ArtworkIndexPage(Page):
     subpage_types = [ArtworkPage]
 
 @register_snippet
-class ArtworkAttributionLink(models.Model):
+class ArtworkAttributionLink(index.Indexed, models.Model):
     artist = ParentalKey('artists.ArtistProfilePage', related_name='artistartworklink')
     artwork = ParentalKey(ArtworkPage, related_name='artworkartistlink')
+
+    panels = [
+        PageChooserPanel('artist', 'artists.ArtistProfilePage'),
+        PageChooserPanel('artwork', 'artworks.ArtworkPage'),
+    ]
+
+    search_fields = [
+        index.RelatedFields('artist', [
+            index.SearchField('title', partial_match=True),
+            index.SearchField('first_name', partial_match=True),
+            index.SearchField('last_name', partial_match=True)
+        ]),
+        index.RelatedFields('artwork', [
+            index.SearchField('title', partial_match=True)
+        ]),
+    ]
 
     api_fields = ['artist', 'artwork']

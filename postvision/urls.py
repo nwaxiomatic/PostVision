@@ -10,6 +10,7 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
 from wagtail.api.v2 import urls as wagtailapi_urls2
+from wagtail.wagtailimages.views.serve import ServeView
 
 from django.views.generic.base import TemplateView
 
@@ -31,7 +32,8 @@ urlpatterns = [
     url(r'', include(wagtail_urls)),
 
     url(r'^(?P<path>.*)/$', TemplateView.as_view(template_name='home/base.html')),
-    url(r'^$', TemplateView.as_view(template_name='home/base.html'))
+    url(r'^$', TemplateView.as_view(template_name='home/base.html')),
+    url(r'^images/([^/]*)/(\d*)/([^/]*)/[^/]*$', ServeView.as_view(), name='wagtailimages_serve'),
 ]
 
 from django.conf.urls.static import static

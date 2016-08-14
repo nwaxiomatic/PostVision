@@ -54,7 +54,7 @@ define([
                         M2M: true,
                     });
                     self.m2mCollections[listName].addAll();
-                    self.m2mCollections[listName].bind('all', self.rethrow, self);
+                    //self.m2mCollections[listName].bind('all', self.rethrow, self);
                 }                
             });            
         },

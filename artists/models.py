@@ -22,6 +22,8 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
 from contact.models import ContactFields
 
+from helpers.utils import generate_image_url
+
 class ArtistProfilePage(Page):
     first_name = models.CharField(max_length=127, blank=True, null=True)
     last_name = models.CharField(max_length=127, blank=True, null=True)
@@ -33,13 +35,6 @@ class ArtistProfilePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+',
-    )
-    feed_image = models.ForeignKey(
-        'wagtailimages.Image',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
     )
 
     search_fields = Page.search_fields + [
@@ -57,23 +52,32 @@ class ArtistProfilePage(Page):
         FieldPanel('intro', classname="full"),
         FieldPanel('bio', classname="full"),
         ImageChooserPanel('profile_picture'),
-        ImageChooserPanel('feed_image'),
-        InlinePanel('artistartworklink', label="Artworks"),
+        InlinePanel('artistartworklink', label="Artworks", 
+            panels=[
+                PageChooserPanel('artwork', 'artworks.ArtworkPage'),
+            ]),
         InlinePanel('sitesocialmediacontact', label="Social Media Links"),
     ]
 
     subpage_types = []
 
+    """
     promote_panels = Page.promote_panels + [
-        ImageChooserPanel('feed_image'),
+        ImageChooserPanel('profile_picture'),
     ]
+    """
 
     api_fields = ['first_name', 'last_name', 'intro', 'bio',
-        'profile_picture', 'feed_image', 'slug', 'url', 
-        'artistartworklink', 'sitesocialmediacontact']
+        'profile_picture', 'slug', 'url', 
+        'artistartworklink', 'sitesocialmediacontact', 'profile_picture_url']
 
     def __unicode__(self):
         return self.first_name + ' ' + self.last_name
+
+    @property
+    def profile_picture_url(self):
+        if self.profile_picture:
+            return generate_image_url(self.profile_picture, 'width-600')
 
 class ArtistIndexPage(Page):
     intro = RichTextField(blank=True)

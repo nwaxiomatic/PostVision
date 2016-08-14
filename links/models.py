@@ -66,15 +66,13 @@ class RelatedLinkType(models.Model):
         verbose_name=_('Name'),
     )
 
-    symbol = models.CharField(
-        max_length=256,
-        verbose_name=_('Symbol'),
-        blank=True,
-    )
-
     base_url = models.URLField(
         max_length=127,
     )
+
+    prepend = models.BooleanField(default=False)
+
+    full_replace = models.BooleanField(default=False)
 
     api_fields = ['name']
 

@@ -252,7 +252,8 @@ p, h2, h1, h3, h4{
 html, body {
     height: 100%;
     margin:0px;
-    font-family: 'Knockout-48Featherweight' !important;
+    font-family: 'Pragati Narrow', sans-serif;
+    font-weight: bold;
     font-size: 36px;
 }
 

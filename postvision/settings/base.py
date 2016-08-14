@@ -160,6 +160,8 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 100 * 1024 * 1024
+
 # django-compressor settings
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
@@ -183,6 +185,8 @@ WAGTAILAPI_BASE_URL = 'http://107.170.47.203/'
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "PostVision"
+
+ALLOWED_HOSTS = ['107.170.47.203']
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash

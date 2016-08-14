@@ -64,7 +64,14 @@ class SocialMediaContact(RelatedLink):
         return str(self.link_type).lower()
 
     def save(self, *args, **kwargs):
-        self.link_external = self.link_type.base_url + self.handle
+        if self.link_type.full_replace:
+            self.link_external = 'http://' + \
+                self.handle.replace('https://', '').replace('http://', '')
+        elif self.link_type.prepend:
+            self.link_external = self.link_type.base_url.replace(
+                'www', self.handle)
+        else:
+            self.link_external = self.link_type.base_url + self.handle
         super(SocialMediaContact, self).save(*args, **kwargs)
 
     class Meta:
