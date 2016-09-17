@@ -20,13 +20,15 @@ define([
                 self.listView = ListView;
                 self.template = ListTemplate;
                 if (!app.collections[appName]){
-                    app.collections[appName] = new Collection;
+                    app.collections[appName] = new Collection({success:_.bind(self.render, self)});
                 }
                 self.collection = app.collections[appName];
                 
-                self.collection.maybeFetch({
-                    success: _.bind(self.render, self)
-                });
+                if(!options.dont_fetch){
+                    self.collection.maybeFetch({
+                        success: _.bind(self.render, self)
+                    });
+                }
             });
         },
 

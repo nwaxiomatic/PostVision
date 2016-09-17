@@ -1,7 +1,7 @@
 define([
     'underscore',
     'collections/children',
-    'models/nav'
+    'models/nav'  
 ], function(_, ChildPageCollection, NavbarPageModel){
     var NavbarCollection = ChildPageCollection.extend({
         urlRoot: '/api/v2beta/pages/',
@@ -10,7 +10,10 @@ define([
         appName: 'navbar',
         modelName: 'nav',
         ignore: ['Artworks'],
-        initialize: function(){
+        /*url: function(){
+            return this.urlRoot + '?child_of_and_parent=' + this.parentID + '&fields=' + this.fields.join(',');
+        },*/
+        initialize: function(options){
             var self = this;
             var homepage = new NavbarPageModel({
                 'page_slug':'home',
@@ -22,7 +25,9 @@ define([
                     self.maybeFetch({
                         success: function(){
                             homepage.attributes.meta.slug = '';
-                            self.add([homepage]);
+                            self.add([homepage]); //2
+                            console.log('home added');
+                            options.success();
                         }
                     });
                 }

@@ -37,7 +37,7 @@ define([
         navbar: function(){
             var appName = 'navbar';
             if(!app.listApps[appName]){
-                app.listApps[appName] = new WagtailNavbarApp({});
+                app.listApps[appName] = new WagtailNavbarApp({'dont_fetch':true});
                 setTimeout("$('#menu').addClass('shown-menu');", 1000);
             }
         },

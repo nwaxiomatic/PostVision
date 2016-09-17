@@ -26,6 +26,7 @@ define([
                 return function(){
                     self._fetched = true;
                     success && success.apply(this, arguments);
+                    console.log('fetched');
                 };
             };
         options.success = successWrapper(options.success);

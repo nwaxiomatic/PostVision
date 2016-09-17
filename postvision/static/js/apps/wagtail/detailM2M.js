@@ -8,7 +8,7 @@ define([
         m2mCollections: {},
 
         events: {
-          'click .arrow-down-check' : 'clickPage',
+          //'click .arrow-down-check' : 'clickPage',
           'DOMMouseScroll' : 'mousewheel',
           'mousewheel' : 'mousewheel',
         },
@@ -38,7 +38,7 @@ define([
                 
                 self.$el.html(fulltemplate({}));
                 $('#appDetail').html(template(self.model.toJSON()));
-                $('#appM2M').addClass('hidden-desktop no-height-desktop col-xs-12');
+                //$('#appM2M').addClass('hidden-desktop no-height-desktop col-xs-12');
                 $('#detail-block').addClass('shown');
                 var m2m = self.model.manytomanyfields;
                 if(!m2m){
@@ -60,20 +60,21 @@ define([
         },
 
         mousewheel: function(event, delta, deltaX, deltaY){
-            console.log(app.scrollEnabled);
+            //console.log(app.scrollEnabled);
             if(!app.isMobile){
                 var checked = $('#M2Marrow-check').prop('checked');
                 if(!checked && $('#M2Marrow-check').length > 0) {
                     event.preventDefault();
                 };
                 this.resetTop(event);
+                this.setToTop(event);
                 if(!app.scrollEnabled) {
                     return;
                 };
                 this.scrollPage(event);
                 this.navigateTo(event, delta, deltaX, deltaY);
-                $('#M2Marrow-check').attr('disabled', 'disabled');
-                setTimeout("$('#M2Marrow-check').removeAttr('disabled');", 100);
+                //$('#M2Marrow-check').attr('disabled', 'disabled');
+                //setTimeout("$('#M2Marrow-check').removeAttr('disabled');", 100);
             }
         },
 
@@ -88,14 +89,15 @@ define([
         },
 
         clickPage: function(event){
+            /*
             console.log('clicked');
-            //$('#detail-block').toggleClass('hidden shown slide-up');
+            $('#detail-block').toggleClass('hidden shown slide-up');
             $('#appM2M').toggleClass('hidden-desktop shown');
             var scrolltime = 1500;
             app.scrollEnabled = false;
             setTimeout(this.enableScroll, scrolltime);
             if( $('#M2Marrow-check').prop('checked') ){
-                $('#appM2M').toggleClass('no-height-desktop');
+                //$('#appM2M').toggleClass('no-height-desktop');
                 if(!app.isMobile){
                     $('html, body').animate({
                         scrollTop: $('#appM2M').offset().top
@@ -109,7 +111,7 @@ define([
                         scrollTop: $('body').offset().top
                     }, scrolltime);
                 }
-            }
+            }*/
         },
 
         scrollEvent: function(event){
@@ -125,6 +127,14 @@ define([
         resetTop: function (event) {
             var st = $('body').scrollTop();
             if(st < 1 && st < this.lastScrollTop && $('#M2Marrow-check').prop('checked')){
+                $("#M2Marrow-check").click();
+            }
+            this.lastScrollTop = st;
+        },
+
+        setToTop: function (event) {
+            var st = $('body').scrollTop();
+            if(st > 1 && st > this.lastScrollTop && !$('#M2Marrow-check').prop('checked')){
                 $("#M2Marrow-check").click();
             }
             this.lastScrollTop = st;
