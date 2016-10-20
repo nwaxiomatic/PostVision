@@ -17,6 +17,7 @@ require.config({
         videojs: 'bower_components/video.js/dist/video',
         vide: 'bower_components/vide/dist/jquery.vide.require',
         mousewheel: 'bower_components/mousewheel/mousewheel',
+        lazyload: 'bower_components/lazy-load-xt/dist/jquery.lazyloadxt.extra'
     },
 
     shim: {

@@ -1,3 +1,7 @@
+.app-body {
+  padding: 100px;
+}
+
 .no-height-desktop {
     height: 0px;
     overflow: hidden;
@@ -13,11 +17,6 @@
     padding-left: 0;
     width: 70%;
     list-style-type: none;
-}
-
-#appM2M ul img{
-    max-width: 100%;
-    max-height: 75%
 }
 
 #artist-cover {

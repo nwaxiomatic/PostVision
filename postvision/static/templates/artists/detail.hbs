@@ -1,5 +1,5 @@
 <div id="detail-block">
-<div id="artist-cover" class="col-xs-12" >
+<div id="artist-cover" class="full-width" >
     <div id="artist-profile-image-block">
         <div class="img-circle" id="artist-profile-image" >
             <div class='artist-feed-image-height' style="background-image: url('{{profile_picture.meta.file}}')">
@@ -17,10 +17,10 @@
         </div>
     </div>
 </div>
-<div id="artist-bio" class="col-xs-12">
+<div id="artist-bio" class="full-width">
     {{{bio}}}
 </div>
-<div id="artist-social" class="col-xs-12" >
+<div id="artist-social" class="full-width" >
     <ul class="artist-social">
         {{#each sitesocialmediacontact}}
             <li class="artist-social">
@@ -37,3 +37,7 @@
 <input class="arrow-down-check center-side" id="M2Marrow-check" type="checkbox">
     <label for="M2Marrow-check" id="M2Marrow" class="arrow-down center-side"><div>TOP</div></label>
     </div>
+
+<script type="text/javascript">
+    document.title = "{{uppercase title}}";
+</script>

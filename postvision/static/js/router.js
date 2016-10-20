@@ -6,11 +6,12 @@ define([
     'backbonesuper',
     'videojs',
     'vide',
+    'lazyload',
     'css',
     'apps/wagtail/navbar',
     'apps/wagtail/list',
     'apps/wagtail/detailM2M',
-], function($, hbs, _, Backbone, BackboneSuper, videojs, vide, css, WagtailNavbarApp, WagtailListApp, 
+], function($, hbs, _, Backbone, BackboneSuper, videojs, vide, lazyload, css, WagtailNavbarApp, WagtailListApp, 
         WagtailDetailApp){
     var AppRouter = Backbone.Router.extend({
         detailPages: ['contact', 'info'],

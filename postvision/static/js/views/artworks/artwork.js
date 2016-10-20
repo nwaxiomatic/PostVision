@@ -12,6 +12,7 @@ define([
         	$.each(this.$el.children(".video-js"), function(i, video){
                 videojs(video, {}, function(){});
             });
+            $(window).lazyLoadXT();
         }
     });
     // Our module now returns our view

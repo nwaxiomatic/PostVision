@@ -1,3 +1,15 @@
+h2 {
+  font-size: 72px;
+}
+
+h3 {
+  font-size: 36px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
 #app {
     padding: 0;
 }
@@ -12,4 +24,18 @@
 
 .artwork-text {
     padding: 5%;
+}
+
+.menu-text {
+	visibility: hidden;
+}
+
+.app-title {
+  width: 100%;
+  text-align: center;
+  font-size: 48px;
+}
+
+.app-body {
+	padding: 15px;
 }

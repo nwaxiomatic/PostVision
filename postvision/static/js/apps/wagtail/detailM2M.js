@@ -8,7 +8,7 @@ define([
         m2mCollections: {},
 
         events: {
-          //'click .arrow-down-check' : 'clickPage',
+          'click .arrow-down-check' : 'clickPage',
           'DOMMouseScroll' : 'mousewheel',
           'mousewheel' : 'mousewheel',
         },
@@ -93,9 +93,6 @@ define([
             console.log('clicked');
             $('#detail-block').toggleClass('hidden shown slide-up');
             $('#appM2M').toggleClass('hidden-desktop shown');
-            var scrolltime = 1500;
-            app.scrollEnabled = false;
-            setTimeout(this.enableScroll, scrolltime);
             if( $('#M2Marrow-check').prop('checked') ){
                 //$('#appM2M').toggleClass('no-height-desktop');
                 if(!app.isMobile){
@@ -103,15 +100,18 @@ define([
                         scrollTop: $('#appM2M').offset().top
                     }, scrolltime);
                 }
-            }
-            else{
-                setTimeout("$('#appM2M').toggleClass('no-height-desktop');", scrolltime);
+            }*/
+            if(!$('#M2Marrow-check').prop('checked') ){
+                var scrolltime = 1000;
+                app.scrollEnabled = false;
+                setTimeout(this.enableScroll, scrolltime);
+                //setTimeout("$('#appM2M').toggleClass('no-height-desktop');", scrolltime);
                 if(!app.isMobile){
                     $('html, body').animate({
                         scrollTop: $('body').offset().top
                     }, scrolltime);
                 }
-            }*/
+            }
         },
 
         scrollEvent: function(event){

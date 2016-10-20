@@ -1,5 +1,5 @@
 {{#if video}}
-<video id="artwork-video" class="video-js vjs-sublime-skin hu-css" controls preload="auto" fluid="true"
+<video loop id="artwork-video" class="video-js vjs-sublime-skin hu-css" controls preload="auto" fluid="true"
   poster="{{image.meta.file}}" data-setup="{}">
     <source src="{{video.meta.file}}" type='video/mp4'>
     <p class="vjs-no-js">
@@ -8,7 +8,7 @@
     </p>
   </video>
 {{else}}
-<img src="{{image.meta.file}}">
+<img data-src="{{image.meta.file}}">
 {{/if}}
 <div class="artwork-text">
 <div class="artwork-title">{{uppercase title}}</div>

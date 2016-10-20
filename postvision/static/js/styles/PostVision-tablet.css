@@ -1,3 +1,19 @@
+h2 {
+  font-size: 100px;
+}
+
+h3 {
+  font-size: 60px;
+}
+
+h4 {
+  font-size: 36px;
+}
+
+.app-body {
+  padding: 50px;
+}
+
 .artist-name {
     float: left;
 }
@@ -49,10 +65,6 @@
 #artist-social ul {
     margin: 0 auto;
     text-align: center;
-}
-
-#appM2M ul img{
-    max-width: 100%;
 }
 
 #appM2M ul {
