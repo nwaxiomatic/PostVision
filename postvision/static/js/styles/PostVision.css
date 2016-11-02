@@ -184,6 +184,10 @@ p, h2, h1, h3, h4{
     margin: 0;
 }
 
+.artwork-media {
+  min-height: 300px;
+}
+
 .artwork-description, .artist-bio{
     font-family: 'Roboto', sans-serif;
     height: 60%;

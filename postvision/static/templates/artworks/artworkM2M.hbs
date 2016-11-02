@@ -1,16 +1,18 @@
-{{#if video}}
-<video loop id="artwork-video" class="video-js vjs-sublime-skin hu-css" controls preload="auto" fluid="true"
-  poster="{{image.meta.file}}" data-setup="{}">
-    <source src="{{video.meta.file}}" type='video/mp4'>
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-  </video>
-{{else}}
-<img data-src="{{image.meta.file}}">
-{{/if}}
+<div class="artwork-media">
+	{{#if video}}
+		<video loop id="artwork-video" class="video-js vjs-sublime-skin hu-css" controls preload="auto" fluid="true"
+	  poster="{{image.meta.file}}" data-setup="{}">
+		    <source src="{{video.meta.file}}" type='video/mp4'>
+		    <p class="vjs-no-js">
+		      To view this video please enable JavaScript, and consider upgrading to a web browser that
+		      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+		    </p>
+	  </video>
+	{{else}}
+		<img data-src="{{image.meta.file}}">
+	{{/if}}
+</div>
 <div class="artwork-text">
 <div class="artwork-title">{{uppercase title}}</div>
 <div class="artwork-description">{{{description}}}</div>
-	</div>
+</div>
