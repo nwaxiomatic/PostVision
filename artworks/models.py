@@ -23,6 +23,7 @@ from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 
+from helpers.utils import generate_image_url
 
 class ArtworkPage(Page):
     description = RichTextField(blank=True, null=True)
@@ -54,9 +55,14 @@ class ArtworkPage(Page):
         ),
     ]
 
-    api_fields = ['slug', 'title', 'description', 'date', 'image', 'video']
+    api_fields = ['slug', 'title', 'description', 'date', 'image', 'video', 'artwork_preview_url']
 
     subpage_types = []
+
+    @property
+    def artwork_preview_url(self):
+        if self.image:
+            return generate_image_url(self.image, 'width-800')
 
 class ArtworkIndexPage(Page):
     intro = RichTextField(blank=True)

@@ -18,7 +18,7 @@ define([
                 var cached_success = options.success;
                 options.success = function(model){
                         self.model = model;
-                        self.render();  
+                        self.render();
                         if(cached_success){
                             cached_success();
                         } 
@@ -37,6 +37,7 @@ define([
                     console.log($(el));
                     self.renderAnimation($(el));
                     $(el).html(template(self.model.toJSON()));
+
             });
             return this;
         },

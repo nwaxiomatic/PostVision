@@ -1,3 +1,9 @@
+<div id="arrow-left-block">
+<input class="arrow-left-check top-left" id="backarrow-check" type="checkbox">
+    <a href="/artists/"><label for="backarrow-check" id="backarrow" class="arrow-left top-left"><div>BACK</div></label></a>
+    </div>
+
+
 <div id="detail-block">
 <div id="artist-cover" class="full-width" >
     <div id="artist-profile-image-block">
@@ -9,10 +15,7 @@
     <div id="artist-name-block"> 
         <div id="artist-name">        
             <span id="artist-first-name" class="artist-name">
-                {{uppercase first_name}}
-            </span>
-            <span id="artist-last-name" class="artist-name">
-                {{uppercase last_name}}
+                {{{uppercaseSplit title}}}
             </span>
         </div>
     </div>

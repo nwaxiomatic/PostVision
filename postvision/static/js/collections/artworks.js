@@ -6,7 +6,7 @@ define([
     appName: 'artworks',
     modelName: 'artwork',
     pageType: 'ArtworkPage',
-    fields: ['slug', 'title', 'date', 'image', 'video', 'description'],
+    fields: ['slug', 'title', 'date', 'image', 'video', 'description', 'artwork_preview_url'],
     order: '-title',
     parse: function(response) {
         return response.items;

@@ -209,11 +209,22 @@ p, h2, h1, h3, h4{
     left: 95%;
 }
 
-.arrow-down-check {
+.top-left {
+    transition: all .7s;
+    position: fixed;
+    //left: 50%;
+    transform: translateX(-50%);
+    top: 200px;
+    z-index: 5;
+    left: 10%;
+}
+
+.arrow-down-check, .arrow-left-check {
   display: none;
 }
 
-.arrow-down, .arrow-down:before, .arrow-down:after {
+.arrow-down, .arrow-down:before, .arrow-down:after,
+.arrow-left, .arrow-left:before, .arrow-left:after {
     transition: all .7s;
     transition: bottom .7s;
     position: absolute;
@@ -229,7 +240,13 @@ p, h2, h1, h3, h4{
     bottom: 10%
 }
 
-.arrow-down:before, .arrow-down:after {
+.top-left:checked, .top-left:checked ~ .top-left {
+    transition: all .7s;
+    left: -5%;
+}
+
+.arrow-down:before, .arrow-down:after, 
+.arrow-left:after, .arrow-left:before {
     height: 4px;
     width: 30px;
     top: 10px;
@@ -241,7 +258,12 @@ p, h2, h1, h3, h4{
     width: 60px;
 }
 
-.arrow-down div {
+.arrow-left {
+    height: 60px;
+    width: 30px;
+}
+
+.arrow-down div, .arrow-left div {
     position: relative;
     color: #FA97FA;
     opacity: 0;
@@ -276,6 +298,18 @@ p, h2, h1, h3, h4{
 .arrow-down-check:checked ~ .arrow-down:after {
   transition: all .2s;
     transform: rotate(-30deg);
+}
+
+.arrow-left:before {
+  transition: all .2s;
+  top: 55%;
+    transform: rotate(60deg);
+}
+
+.arrow-left:after {
+  transition: all .2s;
+  bottom: 55%;
+    transform: rotate(-60deg);
 }
 
 html, body {

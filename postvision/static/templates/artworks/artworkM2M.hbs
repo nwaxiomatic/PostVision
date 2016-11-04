@@ -1,7 +1,7 @@
-<div class="artwork-media">
+
 	{{#if video}}
 		<video loop id="artwork-video" class="video-js vjs-sublime-skin hu-css" controls preload="auto" fluid="true"
-	  poster="{{image.meta.file}}" data-setup="{}">
+	  poster="{{artwork_preview_url}}" data-setup="{}">
 		    <source src="{{video.meta.file}}" type='video/mp4'>
 		    <p class="vjs-no-js">
 		      To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -9,10 +9,16 @@
 		    </p>
 	  </video>
 	{{else}}
-		<img data-src="{{image.meta.file}}">
+		<a class="venobox" data-gall="myGallery" href="{{image.meta.file}}">
+			<img data-src="{{artwork_preview_url}}">
+		</a>
 	{{/if}}
-</div>
+
 <div class="artwork-text">
 <div class="artwork-title">{{uppercase title}}</div>
 <div class="artwork-description">{{{description}}}</div>
 </div>
+
+<script type="text/javascript" charset="utf-8" async defer>
+    $('.venobox').venobox(); 
+</script>
