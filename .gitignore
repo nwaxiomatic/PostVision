@@ -1,4 +1,3 @@
 *.pyc
 /media
 /static
-/postvision/static/js/bower_components

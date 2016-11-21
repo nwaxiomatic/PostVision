@@ -1,0 +1,40 @@
+{
+  "name": "videojs-background",
+  "version": "1.0.6",
+  "homepage": "https://github.com/matthojo/videojs-Background",
+  "authors": [
+    "Matthew Harrison-Jones <matthojo@gmail.com>"
+  ],
+  "description": "Full background video for video.js",
+  "main": "dist/videojs-background.js",
+  "keywords": [
+    "videojs",
+    "html5",
+    "flash",
+    "video",
+    "player",
+    "background",
+    "full"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "video.js": "~5.0.2"
+  },
+  "_release": "1.0.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.6",
+    "commit": "9f3eb50da35427aa52d0296c00893bafd53be56a"
+  },
+  "_source": "https://github.com/matthojo/videojs-Background.git",
+  "_target": "^1.0.6",
+  "_originalSource": "videojs-background",
+  "_direct": true
+}
